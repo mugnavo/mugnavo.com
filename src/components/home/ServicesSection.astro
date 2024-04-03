@@ -1,0 +1,96 @@
+---
+import ServiceCard from "./ServiceCard.astro";
+
+import webImage from "~/assets/services/web.png";
+import mobileImage from "~/assets/services/mobile.png";
+import dashboardImage from "~/assets/services/dashboard.png";
+import backendImage from "~/assets/services/backend.png";
+
+const services = [
+  {
+    title: "Websites",
+    description:
+      "Responsive, performant, and SEO-optimized websites for you to stay ahead of the competition.",
+    image: webImage,
+  },
+  {
+    title: "Mobile Apps",
+    description: "Go cross-platform with Android, iOS, and web apps for seamless user experiences.",
+    image: mobileImage,
+  },
+  {
+    title: "Ecommerce & CMS Dashboards",
+    description: "Accessible & intuitive web applications for ecommerce and content-driven sites.",
+    image: dashboardImage,
+  },
+  {
+    title: "APIs & Microservices",
+    description: "Get up and running with high-performance backends for your apps.",
+    image: backendImage,
+  },
+  // {
+  //   title: "UI/UX Design",
+  //   description: "We strive to deliver beautiful, intuitive, and accessible designs for your apps.",
+  //   image: mobileImage,
+  // },
+  // {
+  //   title: "Progressive Web Apps (PWAs)",
+  //   description: "TODO",
+  //   //image: "TODO",
+  // },
+];
+---
+
+<section class="relative flex gap-12 md:gap-16">
+  <div id="services" class="absolute -top-32"></div>
+  <div class="flex flex-1 flex-col gap-12 md:gap-16">
+    <div class="h-12 text-3xl font-bold sm:h-32 sm:text-5xl">What we offer</div>
+    <div class="flex flex-col gap-12 sm:hidden md:gap-16">
+      {
+        services
+          .filter((_, i) => i % 2 === 0)
+          .map((service) => <ServiceCard {...service} position="right" />)
+      }
+    </div>
+    {
+      services
+        .filter((_, i) => i % 2 !== 0)
+        .map((service) => <ServiceCard {...service} position="left" />)
+    }
+  </div>
+  <div class="hidden flex-1 flex-col gap-12 sm:flex md:gap-16">
+    {
+      services
+        .filter((_, i) => i % 2 === 0)
+        .map((service) => <ServiceCard {...service} position="right" />)
+    }
+  </div>
+</section>
+
+<script>
+  let serviceCards = document.querySelectorAll("._service-card");
+  const slideIn: IntersectionObserverCallback = (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const { target } = entry;
+        const { position } = (target as HTMLElement).dataset;
+        target.classList.replace("opacity-0", "opacity-100");
+        target.classList.replace(
+          position === "left" ? "-translate-x-10" : "translate-x-10",
+          "translate-x-0"
+        );
+      }
+    });
+  };
+
+  const serviceCardObserver = new IntersectionObserver(slideIn, {
+    root: null,
+    threshold: 0.32,
+  });
+  serviceCards.forEach((card) => serviceCardObserver.observe(card));
+
+  document.addEventListener("astro:page-load", () => {
+    serviceCards = document.querySelectorAll("._service-card");
+    serviceCards.forEach((card) => serviceCardObserver.observe(card));
+  });
+</script>

@@ -1,0 +1,27 @@
+---
+const pathname = Astro.url.pathname;
+---
+
+<header
+  class="absolute left-0 right-0 z-50 mx-auto flex h-24 w-full max-w-screen-xl items-center justify-between px-6 lg:px-10"
+>
+  <a
+    title="Home"
+    class={"text-xl transition hover:text-white" + (pathname === "/" ? " pointer-events-none" : "")}
+    href="/">Mugnavo</a
+  >
+  <nav class="flex items-center gap-8">
+    <a
+      title="Services"
+      class="hidden transition hover:text-white sm:block"
+      href={pathname === "/" ? "#services" : "/#services"}>Services</a
+    >
+
+    <a
+      title="Contact"
+      href="/contact"
+      class="inline-flex h-11 items-center justify-center rounded-lg bg-primary px-5 font-medium text-neutral-950 transition-colors duration-300 hover:bg-neutral-200"
+      >Contact us</a
+    >
+  </nav>
+</header>

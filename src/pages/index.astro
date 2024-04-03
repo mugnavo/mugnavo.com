@@ -1,0 +1,95 @@
+---
+import BaseLayout from "~/layouts/_base.astro";
+
+import HeroLogo from "~/components/home/HeroLogo.astro";
+import IntroStack from "~/components/home/IntroStack.astro";
+import ServicesSection from "~/components/home/ServicesSection.astro";
+import Stars from "~/components/home/Stars.astro";
+
+import ContactForm from "~/components/ContactForm";
+
+// TODO
+const introCards = [
+  {
+    title: "Some featured project",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus.",
+    image: "TODO",
+  },
+  {
+    title: "Latest blog post, I guess.",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus.",
+    image: "TODO",
+  },
+];
+---
+
+<BaseLayout>
+  <section class="flex min-h-[780px] items-center justify-center gap-8">
+    <div class="w-full">
+      <div class="flex flex-col items-center gap-10 text-center md:items-start md:text-start">
+        <h1 class="flex flex-col text-5xl sm:text-7xl">
+          <span
+            class="bg-gradient-to-br from-white from-30% to-neutral-400 bg-clip-text text-transparent drop-shadow-[0_0_2px_rgba(255,255,255,0.32)]"
+            >Ideate. Craft.</span
+          >
+          <span class="text-primary drop-shadow-[0_0_64px_rgba(245,220,120,0.6)]">Deploy.</span>
+        </h1>
+        <h2 class="max-w-sm text-lg text-neutral-300 sm:text-2xl md:max-w-md">
+          We build performant software solutions that drive success.
+        </h2>
+        <div class="flex gap-4">
+          <a
+            href="/contact"
+            title="Contact us"
+            class="inline-flex h-10 items-center justify-center rounded-lg bg-neutral-50 px-4 font-medium text-neutral-950 transition-colors duration-300 hover:bg-neutral-300"
+            >Get in touch</a
+          >
+          <a
+            href="#services"
+            class="inline-flex h-10 items-center justify-center rounded-lg px-4 font-medium transition-colors duration-300 hover:bg-neutral-900"
+            >View services</a
+          >
+        </div>
+      </div>
+    </div>
+    <HeroLogo />
+  </section>
+
+  <div class="flex flex-col">
+    <section class="flex w-full gap-6 rounded-3xl bg-neutral-900">
+      {
+        /* TODO, use featured project/latest blog post instead
+      introCards.map((intro) => <IntroCard {...intro} />)
+      */
+      }
+      <IntroStack />
+    </section>
+    <section class="flex min-h-[1080px] w-full items-center justify-center">
+      <div class="flex w-fit flex-col items-center gap-16">
+        <span class="text-center text-3xl font-bold md:text-5xl">Building for the future.</span>
+        <p
+          class="max-w-[40ch] text-justify indent-8 text-lg text-neutral-300 md:indent-16 md:text-2xl"
+        >
+          We are a collective of developers and designers from the Philippines. Our mission is to
+          push the boundaries of technological innovation with the latest industry standards and
+          best practices.
+        </p>
+      </div>
+      <Stars />
+    </section>
+    <ServicesSection />
+    <section
+      class="flex min-h-[768px] w-full flex-col items-center justify-center gap-16 2xl:min-h-[960px]"
+    >
+      <div class="flex flex-col items-center gap-2 text-center">
+        <span class="text-xl text-neutral-400 sm:text-3xl"
+          >Got a project <span class="text-primary drop-shadow-[0_0_24px_rgba(245,220,120,0.8)]"
+            >idea</span
+          > in mind?</span
+        >
+        <span class="text-3xl font-bold sm:text-5xl">Let's get in touch!</span>
+      </div>
+      <ContactForm client:visible />
+    </section>
+  </div>
+</BaseLayout>

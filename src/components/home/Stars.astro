@@ -1,0 +1,61 @@
+<div
+  class="absolute -z-10 flex h-full w-full -rotate-12 flex-col justify-between opacity-80 touch:rotate-0 touch:overflow-hidden touch:opacity-40"
+>
+  <div class="_star h-0.5 w-16 bg-gradient-to-r from-transparent to-neutral-500 touch:hidden"></div>
+  <div class="_star h-0.5 w-16 bg-gradient-to-r from-transparent to-neutral-500"></div>
+  <div class="_star h-0.5 w-16 bg-gradient-to-r from-transparent to-primary"></div>
+  <div class="_star h-0.5 w-16 bg-gradient-to-r from-transparent to-neutral-500"></div>
+  <div class="_star h-0.5 w-16 bg-gradient-to-r from-transparent to-neutral-500 touch:hidden"></div>
+  <div class="_star h-0.5 w-16 bg-gradient-to-r from-transparent to-neutral-500"></div>
+  <div class="_star h-0.5 w-16 bg-gradient-to-r from-transparent to-primary"></div>
+  <div class="_star h-0.5 w-16 bg-gradient-to-r from-transparent to-neutral-500"></div>
+</div>
+
+<script>
+  // TODO: improve gradient to emphasize tip, glow on scroll?
+  // use scroll speed/velocity for playback rate?
+  let stars = document.querySelectorAll("._star");
+  let animations: Animation[] = [];
+  let scrollTimeout: number;
+
+  function addStars() {
+    stars.forEach((s) => {
+      const star = s as HTMLElement;
+      const anim = star.animate(
+        [
+          { transform: `translateX(${Math.random() * -164}dvw)` },
+          {
+            transform: `translateX(110dvw)`,
+          },
+        ],
+        {
+          duration: Math.random() * 40000 + 32000,
+          iterations: Infinity,
+        }
+      );
+      anim.updatePlaybackRate(24);
+      animations.push(anim);
+    });
+  }
+  addStars();
+
+  document.addEventListener("astro:page-load", () => {
+    stars = document.querySelectorAll("._star");
+    animations = [];
+    addStars();
+  });
+  window.addEventListener(
+    "scroll",
+    () => {
+      window.clearTimeout(scrollTimeout);
+
+      scrollTimeout = window.setTimeout(() => {
+        animations.forEach((a) => a.updatePlaybackRate(0.5));
+      }, 80);
+      animations.forEach((a) => {
+        a.updatePlaybackRate(8);
+      });
+    },
+    { passive: true }
+  );
+</script>

@@ -1,0 +1,33 @@
+---
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+interface Props {
+  title: string;
+  description: string;
+  image: ImageMetadata;
+  position: "left" | "right";
+}
+
+const { title, description, image, position } = Astro.props;
+---
+
+<div
+  data-position={position}
+  class={`_service-card touch:translate-x-0 group relative overflow-hidden w-full rounded-3xl bg-neutral-900 opacity-0 transition-all duration-500 ${
+    position === "left" ? "-translate-x-10" : "translate-x-10"
+  }`}
+>
+  <div class="absolute inset-0 z-10 flex flex-col gap-4 p-6 md:p-12 lg:gap-6 lg:p-14">
+    <div class="text-xl font-bold md:text-3xl lg:text-4xl">{title}</div>
+    <div class="text-sm text-neutral-300 xs:text-base sm:text-sm md:text-base lg:text-2xl">
+      {description}
+    </div>
+  </div>
+  <Image
+    loading="lazy"
+    decoding="async"
+    src={image}
+    alt=""
+    class="w-full translate-y-2 brightness-90 grayscale-[64%] transition duration-500 group-hover:translate-y-0 group-hover:filter-none touch:grayscale-0"
+  />
+</div>
