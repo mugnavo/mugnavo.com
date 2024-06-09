@@ -121,12 +121,12 @@ export default function ContactForm() {
         <button
           type="submit"
           class={
-            "flex max-w-full items-center justify-center gap-1 rounded-lg border-2 border-transparent p-3 px-6 font-bold text-neutral-950 shadow-md transition-all hover:brightness-90 active:border-primary disabled:pointer-events-none" +
+            "flex max-w-full items-center justify-center gap-1 rounded-lg border-2 border-transparent p-3 px-6 font-bold text-neutral-950 shadow-md transition-all hover:brightness-90 active:border-primary disabled:pointer-events-none " +
             (status() === "sent"
-              ? " bg-green-300"
+              ? "bg-green-300"
               : status() === "error"
-                ? " bg-red-400"
-                : " bg-neutral-200")
+                ? "bg-red-400"
+                : "bg-neutral-200")
           }
           disabled={status() !== null}
         >
