@@ -22,6 +22,8 @@ export default {
       animation: {
         dash: "dash 24s linear infinite",
         dashgold: "dashgold 42s linear infinite",
+        "header-load": "header-load 0.4s ease-out",
+        "hero-load": "hero-load 0.8s ease-out",
       },
       keyframes: {
         dash: {
@@ -38,6 +40,26 @@ export default {
           },
           to: {
             "stroke-dashoffset": 80, // double the stroke-dasharray
+          },
+        },
+        "header-load": {
+          "0%": {
+            opacity: 0,
+            transform: "translateY(-48px)",
+          },
+          "100%": {
+            opacity: 1,
+            transform: "translateY(0)",
+          },
+        },
+        "hero-load": {
+          "0%": {
+            opacity: 0.2,
+            transform: "translateY(16px)",
+          },
+          "100%": {
+            opacity: 1,
+            transform: "translateY(0)",
           },
         },
       },
