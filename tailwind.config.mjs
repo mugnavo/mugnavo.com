@@ -65,7 +65,7 @@ export default {
         },
         fade: {
           from: {
-            opacity: 0,
+            opacity: 0.2,
           },
           to: {
             opacity: 1,
