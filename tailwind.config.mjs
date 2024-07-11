@@ -23,8 +23,8 @@ export default {
         dash: "dash 24s linear infinite",
         dashgold: "dashgold 42s linear infinite",
         "header-load": "header-load 0.4s ease-out",
-        "hero-load": "hero-load 0.8s ease-out",
-        fade: "fade 0.6s linear",
+        "hero-load": "hero-load 1.2s ease-out",
+        fade: "fade 1s linear",
       },
       keyframes: {
         dash: {
@@ -56,7 +56,7 @@ export default {
         "hero-load": {
           "0%": {
             opacity: 0.2,
-            transform: "translateY(16px)",
+            transform: "translateY(14px)",
           },
           "100%": {
             opacity: 1,
