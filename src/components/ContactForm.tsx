@@ -121,7 +121,7 @@ export default function ContactForm() {
         <button
           type="submit"
           class={
-            "flex max-w-full items-center justify-center gap-1 rounded-lg border-2 border-transparent p-3 px-6 font-bold text-neutral-950 shadow-md transition-all hover:brightness-90 active:border-primary disabled:pointer-events-none " +
+            "flex max-w-full items-center justify-center gap-1 rounded-lg border-2 border-transparent px-8 py-2 font-semibold text-neutral-950 shadow-md transition-all hover:brightness-90 active:border-primary disabled:pointer-events-none " +
             (status() === "sent"
               ? "bg-green-300"
               : status() === "error"
@@ -143,7 +143,7 @@ export default function ContactForm() {
             </svg>
           )}
           <Switch>
-            <Match when={status() === "error"}>Error: Message not sent.</Match>
+            <Match when={status() === "error"}>Error. Not sent.</Match>
             <Match when={status() === "sending"}>Sending...</Match>
             <Match when={status() === "sent"}>Sent!</Match>
             <Match when={status() === null}>Send</Match>
