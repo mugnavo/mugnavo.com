@@ -41,7 +41,7 @@ const introCards = [
         </h2>
         <div class="flex gap-4">
           <a
-            href="/contact"
+            href="#contact"
             title="Contact us"
             class="inline-flex h-10 items-center justify-center rounded-lg bg-neutral-50 px-4 font-medium text-neutral-950 transition-colors duration-300 hover:bg-neutral-300"
             >Get in touch</a
@@ -81,8 +81,9 @@ const introCards = [
     </section>
     <ServicesSection />
     <section
-      class="flex min-h-[768px] w-full flex-col items-center justify-center gap-16 2xl:min-h-[960px]"
+      class="relative flex min-h-[768px] w-full flex-col items-center justify-center gap-16 2xl:min-h-[960px]"
     >
+      <div id="contact" class="absolute top-16"></div>
       <div class="flex flex-col items-center gap-2 text-center">
         <span class="text-xl text-neutral-400 sm:text-3xl"
           >Got a project <span class="text-primary drop-shadow-[0_0_24px_rgba(245,220,120,0.8)]"

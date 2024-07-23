@@ -8,20 +8,21 @@ const pathname = Astro.url.pathname;
   <a
     title="Home"
     class={"text-xl transition hover:text-white" + (pathname === "/" ? " pointer-events-none" : "")}
-    href="/">Mugnavo</a
+    href="/"
   >
+    Mugnavo
+  </a>
   <nav class="flex items-center gap-8">
-    <a
-      title="Services"
-      class="hidden transition hover:text-white sm:block"
-      href={pathname === "/" ? "#services" : "/#services"}>Services</a
-    >
+    <a title="Services" class="hidden transition hover:text-white sm:block" href="#services">
+      Services
+    </a>
 
     <a
       title="Contact"
-      href="/contact"
+      href="#contact"
       class="inline-flex h-11 items-center justify-center rounded-lg bg-primary px-5 font-medium text-neutral-950 transition-colors duration-300 hover:bg-neutral-200"
-      >Contact us</a
     >
+      Contact us
+    </a>
   </nav>
 </header>

@@ -4,8 +4,6 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "~/consts";
 import "@fontsource/outfit";
 import "./_base.css";
 
-import { ViewTransitions } from "astro:transitions";
-
 import Footer from "~/components/Footer.astro";
 import Header from "~/components/Header.astro";
 
@@ -52,8 +50,6 @@ const fullTitle = title ? `${title} - ${SITE_TITLE}` : SITE_TITLE;
     <meta property="twitter:title" content={fullTitle} />
     <meta property="twitter:description" content={description} />
     {image && <meta property="twitter:image" content={new URL(image, Astro.url)} />}
-
-    <ViewTransitions fallback="none" />
   </head>
   <body
     class="flex min-h-screen flex-col overflow-x-hidden bg-neutral-950 font-main text-neutral-200"
