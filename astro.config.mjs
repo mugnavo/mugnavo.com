@@ -11,4 +11,7 @@ export default defineConfig({
   integrations: [sitemap(), tailwind({ applyBaseStyles: false }), solid()],
   output: "hybrid",
   adapter: vercel({ functionPerRoute: false }),
+  experimental: {
+    directRenderScript: true,
+  },
 });
