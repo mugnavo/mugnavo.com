@@ -33,7 +33,10 @@
           iterations: Infinity,
         }
       );
-      anim.updatePlaybackRate(24);
+      //anim.updatePlaybackRate(24);
+      anim.playbackRate = 24;
+      // TODO: possible chrome bug, .updatePlaybackRate() causes animation position to jump
+      // also applied to code below
       animations.push(anim);
     });
   }
@@ -50,10 +53,10 @@
       window.clearTimeout(scrollTimeout);
 
       scrollTimeout = window.setTimeout(() => {
-        animations.forEach((a) => a.updatePlaybackRate(0.5));
+        animations.forEach((a) => (a.playbackRate = 0.5));
       }, 80);
       animations.forEach((a) => {
-        a.updatePlaybackRate(8);
+        a.playbackRate = 8;
       });
     },
     { passive: true }
