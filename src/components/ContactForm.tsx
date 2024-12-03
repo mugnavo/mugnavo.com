@@ -1,4 +1,4 @@
-import { Match, Switch, createSignal } from "solid-js";
+import { Match, Switch, createSignal, type JSX } from "solid-js";
 
 // TODO: use proper accessible form elements
 // also, other types of forms, like with budget range etc.
@@ -9,11 +9,7 @@ export default function ContactForm() {
 
   const [status, setStatus] = createSignal<null | "sent" | "error" | "sending">(null);
 
-  async function sendMessage(
-    e: Event & {
-      submitter: HTMLElement;
-    }
-  ) {
+  const sendMessage: JSX.EventHandler<HTMLFormElement, SubmitEvent> = async (e) => {
     e.preventDefault();
     if (!messageTextRef || !messageNameRef || !messageEmailRef) return;
     const messageText = messageTextRef.value;
@@ -52,7 +48,7 @@ export default function ContactForm() {
         }, 5000);
       }
     }
-  }
+  };
   return (
     <form onSubmit={sendMessage} class="flex w-full max-w-[60ch] flex-col items-center gap-4">
       <div class="flex w-full flex-wrap gap-4">
