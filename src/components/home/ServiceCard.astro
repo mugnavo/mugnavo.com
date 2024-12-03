@@ -27,7 +27,7 @@ const { title, description, image, position } = Astro.props;
     loading="lazy"
     decoding="async"
     src={image}
-    alt=""
+    alt={title}
     class="w-full translate-y-2 brightness-90 grayscale-[64%] transition duration-500 group-hover:translate-y-0 group-hover:filter-none touch:grayscale-0"
   />
 </div>
