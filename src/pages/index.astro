@@ -7,20 +7,6 @@ import ServicesSection from "~/components/home/ServicesSection.astro";
 import Stars from "~/components/home/Stars.astro";
 
 import ContactForm from "~/components/ContactForm";
-
-// TODO
-const introCards = [
-  {
-    title: "Some featured project",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus.",
-    image: "TODO",
-  },
-  {
-    title: "Latest blog post, I guess.",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus.",
-    image: "TODO",
-  },
-];
 ---
 
 <BaseLayout>
@@ -59,11 +45,6 @@ const introCards = [
 
   <div class="flex flex-col">
     <section class="flex w-full gap-6 rounded-3xl bg-neutral-900">
-      {
-        /* TODO, use featured project/latest blog post instead
-      introCards.map((intro) => <IntroCard {...intro} />)
-      */
-      }
       <IntroStack />
     </section>
     <section class="flex min-h-[1080px] w-full items-center justify-center">
