@@ -3,7 +3,7 @@ const pathname = Astro.url.pathname;
 ---
 
 <header
-  class="mx-auto flex w-full max-w-screen-xl items-center justify-between px-6 pb-2 pt-8 lg:px-10"
+  class="mx-auto flex w-full max-w-(--breakpoint-xl) items-center justify-between px-6 pt-8 pb-2 lg:px-10"
 >
   <a
     title="Home"
@@ -20,7 +20,7 @@ const pathname = Astro.url.pathname;
     <a
       title="Contact"
       href="#contact"
-      class="inline-flex h-11 items-center justify-center rounded-lg bg-primary px-5 font-medium text-neutral-950 transition-colors duration-300 hover:bg-neutral-200"
+      class="bg-primary inline-flex h-11 items-center justify-center rounded-lg px-5 font-medium text-neutral-950 transition-colors duration-300 hover:bg-neutral-200"
     >
       Contact us
     </a>

@@ -54,7 +54,7 @@ export default function ContactForm() {
       <div class="flex w-full flex-wrap gap-4">
         <label
           for="name"
-          class="relative block min-w-64 flex-1 overflow-hidden rounded-md border border-neutral-800 bg-neutral-900 px-3 pt-3 shadow-sm focus-within:border-primary focus-within:border-opacity-30 focus-within:ring-1 focus-within:ring-primary focus-within:ring-opacity-30"
+          class="relative block min-w-64 flex-1 overflow-hidden rounded-md border border-neutral-800 bg-neutral-900 px-3 pt-3 shadow-xs focus-within:border-primary/30 focus-within:ring-1 focus-within:ring-primary/30"
         >
           <input
             type="text"
@@ -63,7 +63,7 @@ export default function ContactForm() {
             required
             ref={messageNameRef}
             placeholder="Name"
-            class="peer h-8 w-full border-none bg-transparent placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0"
+            class="peer h-8 w-full border-none bg-transparent placeholder-transparent focus:border-transparent focus:outline-hidden focus:ring-0"
           />
 
           <span class="absolute start-3 top-3 -translate-y-1/2 text-xs text-neutral-400 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
@@ -72,7 +72,7 @@ export default function ContactForm() {
         </label>
         <label
           for="email"
-          class="relative block min-w-64 flex-1 overflow-hidden rounded-md border border-neutral-800 bg-neutral-900 px-3 pt-3 shadow-sm focus-within:border-primary focus-within:border-opacity-30 focus-within:ring-1 focus-within:ring-primary focus-within:ring-opacity-30"
+          class="relative block min-w-64 flex-1 overflow-hidden rounded-md border border-neutral-800 bg-neutral-900 px-3 pt-3 shadow-xs focus-within:border-primary/30 focus-within:ring-1 focus-within:ring-primary/30"
         >
           <input
             type="email"
@@ -81,7 +81,7 @@ export default function ContactForm() {
             required
             ref={messageEmailRef}
             placeholder="Email"
-            class="peer h-8 w-full border-none bg-transparent placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0"
+            class="peer h-8 w-full border-none bg-transparent placeholder-transparent focus:border-transparent focus:outline-hidden focus:ring-0"
           />
 
           <span class="absolute start-3 top-3 -translate-y-1/2 text-xs text-neutral-400 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
@@ -91,7 +91,7 @@ export default function ContactForm() {
       </div>
       <label
         for="text"
-        class="relative block w-full overflow-hidden rounded-md border border-neutral-800 bg-neutral-900 px-3 pt-3 shadow-sm focus-within:border-primary focus-within:border-opacity-30 focus-within:ring-1 focus-within:ring-primary focus-within:ring-opacity-30"
+        class="relative block w-full overflow-hidden rounded-md border border-neutral-800 bg-neutral-900 px-3 pt-3 shadow-xs focus-within:border-primary/30 focus-within:ring-1 focus-within:ring-primary/30"
       >
         <textarea
           name="text"
@@ -100,7 +100,7 @@ export default function ContactForm() {
           required
           ref={messageTextRef}
           placeholder="Message"
-          class="peer w-full resize-none border-none bg-transparent pt-2 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0"
+          class="peer w-full resize-none border-none bg-transparent pt-2 placeholder-transparent focus:border-transparent focus:outline-hidden focus:ring-0"
         />
 
         <span class="absolute start-3 top-3 -translate-y-1/2 text-xs text-neutral-400 transition-all peer-placeholder-shown:top-6 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
