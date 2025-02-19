@@ -54,7 +54,7 @@ export default function ContactForm() {
       <div class="flex w-full flex-wrap gap-4">
         <label
           for="name"
-          class="relative block min-w-64 flex-1 overflow-hidden rounded-md border border-neutral-800 bg-neutral-900 px-3 pt-3 shadow-xs focus-within:border-primary/30 focus-within:ring-1 focus-within:ring-primary/30"
+          class="relative block min-w-64 flex-1 overflow-hidden rounded-lg border border-neutral-800 bg-neutral-900 px-3 pt-3 shadow-xs focus-within:border-primary/30 focus-within:ring-1 focus-within:ring-primary/30"
         >
           <input
             type="text"
@@ -72,7 +72,7 @@ export default function ContactForm() {
         </label>
         <label
           for="email"
-          class="relative block min-w-64 flex-1 overflow-hidden rounded-md border border-neutral-800 bg-neutral-900 px-3 pt-3 shadow-xs focus-within:border-primary/30 focus-within:ring-1 focus-within:ring-primary/30"
+          class="relative block min-w-64 flex-1 overflow-hidden rounded-lg border border-neutral-800 bg-neutral-900 px-3 pt-3 shadow-xs focus-within:border-primary/30 focus-within:ring-1 focus-within:ring-primary/30"
         >
           <input
             type="email"
@@ -91,7 +91,7 @@ export default function ContactForm() {
       </div>
       <label
         for="text"
-        class="relative block w-full overflow-hidden rounded-md border border-neutral-800 bg-neutral-900 px-3 pt-3 shadow-xs focus-within:border-primary/30 focus-within:ring-1 focus-within:ring-primary/30"
+        class="relative block w-full overflow-hidden rounded-lg border border-neutral-800 bg-neutral-900 px-3 pt-3 shadow-xs focus-within:border-primary/30 focus-within:ring-1 focus-within:ring-primary/30"
       >
         <textarea
           name="text"
@@ -117,7 +117,7 @@ export default function ContactForm() {
         <button
           type="submit"
           class={
-            "flex max-w-full items-center justify-center gap-1 rounded-lg border-2 border-transparent px-8 py-2 font-semibold text-neutral-950 shadow-md transition-all hover:brightness-90 active:border-primary disabled:pointer-events-none " +
+            "flex max-w-full items-center cursor-pointer justify-center gap-1 rounded-xl border-2 border-transparent px-8 py-2 font-bold text-neutral-950 shadow-md transition-all hover:brightness-90 active:border-primary disabled:pointer-events-none " +
             (status() === "sent"
               ? "bg-green-300"
               : status() === "error"
