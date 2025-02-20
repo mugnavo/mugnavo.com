@@ -117,7 +117,7 @@ export default function ContactForm() {
         <button
           type="submit"
           class={
-            "flex max-w-full items-center cursor-pointer justify-center gap-1 rounded-xl border-2 border-transparent px-8 py-2 font-bold text-neutral-950 shadow-md transition-all hover:brightness-90 active:border-primary disabled:pointer-events-none " +
+            "flex max-w-full items-center cursor-pointer justify-center gap-1 rounded-xl border-2 border-transparent px-8 py-2 font-semibold text-neutral-950 shadow-md transition-all hover:brightness-90 active:border-primary disabled:pointer-events-none " +
             (status() === "sent"
               ? "bg-green-300"
               : status() === "error"

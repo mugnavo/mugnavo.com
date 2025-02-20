@@ -2,11 +2,27 @@
 import BaseLayout from "~/layouts/_base.astro";
 
 import HeroLogo from "~/components/home/HeroLogo.astro";
-import IntroStack from "~/components/home/IntroStack.astro";
+import IntroCard from "~/components/home/IntroCard.astro";
 import ServicesSection from "~/components/home/ServicesSection.astro";
 import Stars from "~/components/home/Stars.astro";
 
 import ContactForm from "~/components/ContactForm";
+
+// TODO
+const introCards = [
+  {
+    title: "Varo",
+    description: "TODO",
+    image: "TODO",
+    href: "https://varo.dev",
+  },
+  {
+    title: "Venur",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus.",
+    image: "TODO",
+    href: "https://venur.me",
+  },
+];
 ---
 
 <BaseLayout>
@@ -15,7 +31,7 @@ import ContactForm from "~/components/ContactForm";
       <div
         class="animate-hero-load flex flex-col items-center gap-12 text-center md:items-start md:text-start"
       >
-        <h1 class="max-w-sm text-3xl leading-snug font-medium sm:text-5xl md:max-w-md">
+        <h1 class="max-w-sm text-3xl leading-snug font-semibold sm:text-5xl md:max-w-md">
           Digital products that can make a
           <span class="text-primary">difference.</span>
         </h1>
@@ -26,12 +42,12 @@ import ContactForm from "~/components/ContactForm";
           <a
             href="#contact"
             title="Contact us"
-            class="inline-flex h-12 items-center justify-center rounded-xl bg-neutral-50 px-5 font-bold text-neutral-950 transition-colors duration-300 hover:bg-neutral-300"
+            class="inline-flex h-12 items-center justify-center rounded-xl bg-neutral-50 px-5 font-semibold text-neutral-950 transition-colors duration-300 hover:bg-neutral-300"
             >Get in touch</a
           >
           <a
             href="#services"
-            class="inline-flex h-12 items-center justify-center rounded-xl px-5 font-bold transition-colors duration-300 hover:bg-neutral-900"
+            class="inline-flex h-12 items-center justify-center rounded-xl px-5 font-semibold transition-colors duration-300 hover:bg-neutral-900"
             >View services</a
           >
         </div>
@@ -41,8 +57,8 @@ import ContactForm from "~/components/ContactForm";
   </section>
 
   <div class="flex flex-col">
-    <section class="flex w-full gap-6 rounded-3xl bg-neutral-900">
-      <IntroStack />
+    <section class="flex h-96 w-full gap-4 rounded-3xl bg-neutral-900 p-6">
+      {introCards.map((intro) => <IntroCard {...intro} />)}
     </section>
     <section class="flex min-h-[1080px] w-full items-center justify-center">
       <div class="flex w-fit flex-col items-center gap-16">
