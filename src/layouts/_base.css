@@ -47,11 +47,11 @@
   @keyframes hero-buttons {
     0% {
       opacity: 0;
-      transform: translateY(12px);
+      transform: translateY(14px);
     }
     40% {
       opacity: 0;
-      transform: translateY(12px);
+      transform: translateY(14px);
     }
     100% {
       opacity: 1;
