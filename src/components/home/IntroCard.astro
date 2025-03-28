@@ -1,15 +1,22 @@
 ---
 interface Props {
   title: string;
-  description: string;
+  subtitle: string;
   image: string;
   href: string;
 }
-const { title, description, image, href } = Astro.props;
+const { title, subtitle, image, href } = Astro.props;
 ---
 
-<a href="#" class="group relative p-8">
-  <span class="relative z-10 text-2xl font-bold">{title}</span>
+<a href="#" class="group relative max-h-60">
+  <div class="relative z-10 flex gap-1">
+    <img src={image} alt={title} class="z-10 size-60 rounded-2xl object-cover" />
+
+    <div class="flex flex-col justify-between p-4">
+      <span class="text-2xl font-bold tracking-wide">{title}</span>
+      <span class="text-sm tracking-wide text-neutral-400">{subtitle}</span>
+    </div>
+  </div>
   <div
     class="absolute inset-0 h-full w-full scale-98 rounded-2xl bg-neutral-800 opacity-0 transition duration-200 group-hover:scale-100 group-hover:opacity-100"
   >
