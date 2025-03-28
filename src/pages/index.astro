@@ -13,12 +13,16 @@ const introCards = [
   {
     title:
       "Varo: The AI-powered matchmaking platform for developers, open-source projects, and indie founders.",
+    smTitle: "The AI-powered matchmaking platform for developers.",
+    xsTitle: "AI-powered matchmaking platform for devs.",
     subtitle: "Our latest project",
     image: "https://placehold.co/300x300/png",
     href: "https://varo.dev",
   },
   {
     title: "TODO BLOG POST",
+    smTitle: "TODO BLOG POST",
+    xsTitle: "TODO BLOG POST",
     subtitle: "Latest blog post",
     image: "https://placehold.co/200x200/png",
     href: "https://venur.me",
@@ -60,7 +64,7 @@ const introCards = [
   </section>
 
   <div class="flex flex-col">
-    <section class="grid h-72 w-full gap-4 rounded-3xl bg-neutral-900 p-6 md:grid-cols-2">
+    <section class="grid w-full gap-4 rounded-3xl bg-neutral-900 p-2 sm:p-6 xl:grid-cols-2">
       {introCards.map((intro) => <IntroCard {...intro} />)}
     </section>
     <section class="flex min-h-[1080px] w-full items-center justify-center">
