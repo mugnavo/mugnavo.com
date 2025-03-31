@@ -2,36 +2,59 @@
 import BaseLayout from "~/layouts/_base.astro";
 
 import HeroLogo from "~/components/home/HeroLogo.astro";
-import IntroStack from "~/components/home/IntroStack.astro";
+import IntroCard from "~/components/home/IntroCard.astro";
 import ServicesSection from "~/components/home/ServicesSection.astro";
 import Stars from "~/components/home/Stars.astro";
 
 import ContactForm from "~/components/ContactForm";
+
+// TODO
+const introCards = [
+  {
+    title:
+      "Varo: The AI-powered matchmaking platform for developers, open-source projects, and indie founders.",
+    smTitle: "The AI-powered matchmaking platform for developers.",
+    xsTitle: "AI-powered matchmaking platform for devs.",
+    subtitle: "Our latest project",
+    image: "https://placehold.co/300x300/png",
+    href: "https://varo.dev",
+  },
+  {
+    title: "TODO BLOG POST",
+    smTitle: "TODO BLOG POST",
+    xsTitle: "TODO BLOG POST",
+    subtitle: "Latest blog post",
+    image: "https://placehold.co/200x200/png",
+    href: "https://venur.me",
+  },
+];
 ---
 
 <BaseLayout>
   <section class="flex min-h-[790px] items-center justify-center gap-8">
     <div class="w-full">
       <div
-        class="animate-hero-load flex flex-col items-center gap-12 text-center md:items-start md:text-start"
+        class="flex min-h-[420px] flex-col items-center gap-16 text-center md:items-start md:text-start"
       >
-        <h1 class="max-w-sm text-3xl leading-snug font-medium sm:text-5xl md:max-w-md">
+        <h1
+          class="animate-hero-load max-w-sm text-3xl leading-snug font-medium sm:text-5xl md:max-w-md"
+        >
           Digital products that can make a
           <span class="text-primary">difference.</span>
         </h1>
         <!-- <h2 class="max-w-sm text-lg text-neutral-300 sm:text-2xl md:max-w-md">
           Products that can make a difference.
         </h2> -->
-        <div class="flex gap-4">
+        <div class="animate-hero-buttons flex gap-4 duration-75">
           <a
             href="#contact"
             title="Contact us"
-            class="inline-flex h-12 items-center justify-center rounded-xl bg-neutral-50 px-5 font-bold text-neutral-950 transition-colors duration-300 hover:bg-neutral-300"
+            class="inline-flex h-12 items-center justify-center rounded-xl bg-neutral-50 px-5 font-semibold text-neutral-950 transition-colors duration-300 hover:bg-neutral-300"
             >Get in touch</a
           >
           <a
             href="#services"
-            class="inline-flex h-12 items-center justify-center rounded-xl px-5 font-bold transition-colors duration-300 hover:bg-neutral-900"
+            class="inline-flex h-12 items-center justify-center rounded-xl px-5 font-semibold transition-colors duration-300 hover:bg-neutral-900"
             >View services</a
           >
         </div>
@@ -41,18 +64,18 @@ import ContactForm from "~/components/ContactForm";
   </section>
 
   <div class="flex flex-col">
-    <section class="flex w-full gap-6 rounded-3xl bg-neutral-900">
-      <IntroStack />
+    <section class="grid w-full gap-4 rounded-3xl bg-neutral-900 p-2 sm:p-6 xl:grid-cols-2">
+      {introCards.map((intro) => <IntroCard {...intro} />)}
     </section>
     <section class="flex min-h-[1080px] w-full items-center justify-center">
       <div class="flex w-fit flex-col items-center gap-16">
-        <span class="text-center text-2xl font-bold md:text-4xl">Building for the future.</span>
-        <p
-          class="max-w-[40ch] text-justify indent-8 text-lg text-neutral-300 md:indent-16 md:text-2xl"
+        <span class="text-center text-2xl font-bold tracking-wide md:text-4xl"
+          >Building for the future.</span
         >
+        <p class="max-w-[42ch] text-lg tracking-wide text-neutral-300 md:text-2xl">
           We are a collective of developers and designers from the Philippines. Our mission is to
-          push the boundaries of technological innovation with the latest industry standards and
-          best practices.
+          push the boundaries of technological innovation by delivering products that excel in both
+          quality and scalability.
         </p>
       </div>
       <Stars />

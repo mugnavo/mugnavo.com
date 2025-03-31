@@ -7,7 +7,8 @@
 
   --animate-dash: dash 24s linear infinite;
   --animate-dashgold: dashgold 42s linear infinite;
-  --animatehero-load: hero-load 1.4s ease-out;
+  --animate-hero-load: hero-load 1.4s ease-out;
+  --animate-hero-buttons: hero-buttons 1.4s ease-out;
   --animate-fade: fade 1s ease-in;
 
   @keyframes dash {
@@ -30,7 +31,26 @@
 
   @keyframes hero-load {
     0% {
-      opacity: 0.2;
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    14% {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes hero-buttons {
+    0% {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    40% {
+      opacity: 0;
       transform: translateY(14px);
     }
     100% {
