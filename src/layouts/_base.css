@@ -69,12 +69,6 @@
   }
 }
 
-@custom-variant touch {
-  @media (pointer: coarse) {
-    @slot;
-  }
-}
-
 @layer base {
   :root {
     color-scheme: dark;

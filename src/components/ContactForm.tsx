@@ -54,7 +54,7 @@ export default function ContactForm() {
       <div class="flex w-full flex-wrap gap-4">
         <label
           for="name"
-          class="relative block min-w-64 flex-1 overflow-hidden rounded-lg border border-neutral-800 bg-neutral-900 px-3 pt-3 shadow-xs focus-within:border-primary/30 focus-within:ring-1 focus-within:ring-primary/30"
+          class="focus-within:border-primary/30 focus-within:ring-primary/30 relative block min-w-64 flex-1 overflow-hidden rounded-lg border border-neutral-800 bg-neutral-900 px-3 pt-3 shadow-xs focus-within:ring-1"
         >
           <input
             type="text"
@@ -63,7 +63,7 @@ export default function ContactForm() {
             required
             ref={messageNameRef}
             placeholder="Name"
-            class="peer h-8 w-full border-none bg-transparent placeholder-transparent focus:border-transparent focus:outline-hidden focus:ring-0"
+            class="peer h-8 w-full border-none bg-transparent placeholder-transparent focus:border-transparent focus:ring-0 focus:outline-hidden"
           />
 
           <span class="absolute start-3 top-3 -translate-y-1/2 text-xs text-neutral-400 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
@@ -72,7 +72,7 @@ export default function ContactForm() {
         </label>
         <label
           for="email"
-          class="relative block min-w-64 flex-1 overflow-hidden rounded-lg border border-neutral-800 bg-neutral-900 px-3 pt-3 shadow-xs focus-within:border-primary/30 focus-within:ring-1 focus-within:ring-primary/30"
+          class="focus-within:border-primary/30 focus-within:ring-primary/30 relative block min-w-64 flex-1 overflow-hidden rounded-lg border border-neutral-800 bg-neutral-900 px-3 pt-3 shadow-xs focus-within:ring-1"
         >
           <input
             type="email"
@@ -81,7 +81,7 @@ export default function ContactForm() {
             required
             ref={messageEmailRef}
             placeholder="Email"
-            class="peer h-8 w-full border-none bg-transparent placeholder-transparent focus:border-transparent focus:outline-hidden focus:ring-0"
+            class="peer h-8 w-full border-none bg-transparent placeholder-transparent focus:border-transparent focus:ring-0 focus:outline-hidden"
           />
 
           <span class="absolute start-3 top-3 -translate-y-1/2 text-xs text-neutral-400 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
@@ -91,7 +91,7 @@ export default function ContactForm() {
       </div>
       <label
         for="text"
-        class="relative block w-full overflow-hidden rounded-lg border border-neutral-800 bg-neutral-900 px-3 pt-3 shadow-xs focus-within:border-primary/30 focus-within:ring-1 focus-within:ring-primary/30"
+        class="focus-within:border-primary/30 focus-within:ring-primary/30 relative block w-full overflow-hidden rounded-lg border border-neutral-800 bg-neutral-900 px-3 pt-3 shadow-xs focus-within:ring-1"
       >
         <textarea
           name="text"
@@ -100,7 +100,7 @@ export default function ContactForm() {
           required
           ref={messageTextRef}
           placeholder="Message"
-          class="peer w-full resize-none border-none bg-transparent pt-2 placeholder-transparent focus:border-transparent focus:outline-hidden focus:ring-0"
+          class="peer w-full resize-none border-none bg-transparent pt-2 placeholder-transparent focus:border-transparent focus:ring-0 focus:outline-hidden"
         />
 
         <span class="absolute start-3 top-3 -translate-y-1/2 text-xs text-neutral-400 transition-all peer-placeholder-shown:top-6 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
@@ -117,7 +117,7 @@ export default function ContactForm() {
         <button
           type="submit"
           class={
-            "flex max-w-full items-center cursor-pointer justify-center gap-1 rounded-xl border-2 border-transparent px-8 py-2 font-semibold text-neutral-950 shadow-md transition-all hover:brightness-90 active:border-primary disabled:pointer-events-none " +
+            "active:border-primary flex max-w-full cursor-pointer items-center justify-center gap-1 rounded-xl border-2 border-transparent px-8 py-2 font-semibold text-neutral-950 shadow-md transition-all hover:brightness-90 disabled:pointer-events-none " +
             (status() === "sent"
               ? "bg-green-300"
               : status() === "error"
