@@ -3,7 +3,7 @@
 @theme {
   --breakpoint-xs: 380px;
   --color-primary: #f5dc78;
-  --font-main: "Poppins", sans-serif;
+  --font-main: var(--font-poppins), sans-serif;
 
   --animate-dash: dash 24s linear infinite;
   --animate-dashgold: dashgold 42s linear infinite;

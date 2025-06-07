@@ -1,4 +1,4 @@
-import { defineConfig } from "astro/config";
+import { defineConfig, fontProviders } from "astro/config";
 
 import sitemap from "@astrojs/sitemap";
 import solid from "@astrojs/solid-js";
@@ -14,5 +14,18 @@ export default defineConfig({
 
   vite: {
     plugins: [tailwindcss()],
+  },
+
+  experimental: {
+    fonts: [
+      {
+        provider: fontProviders.google(),
+        name: "Poppins",
+        cssVariable: "--font-poppins",
+        fallbacks: ["sans-serif"],
+        styles: ["normal"],
+        subsets: ["latin"],
+      },
+    ],
   },
 });

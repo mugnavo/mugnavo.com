@@ -1,8 +1,7 @@
 ---
 import { SITE_DESCRIPTION, SITE_TITLE } from "~/consts";
 
-import "@fontsource/poppins";
-import poppinsWoff2 from "@fontsource/poppins/files/poppins-latin-400-normal.woff2?url";
+import { Font } from "astro:assets";
 import "./_base.css";
 
 import Footer from "~/components/Footer.astro";
@@ -52,7 +51,7 @@ const fullTitle = title ? `${title} - ${SITE_TITLE}` : SITE_TITLE;
     <meta property="twitter:description" content={description} />
     {image && <meta property="twitter:image" content={new URL(image, Astro.url)} />}
 
-    <link rel="preload" as="font" type="font/woff2" href={poppinsWoff2} crossorigin="anonymous" />
+    <Font cssVariable="--font-poppins" preload />
   </head>
   <body
     class="font-main flex min-h-screen flex-col overflow-x-hidden bg-neutral-950 text-neutral-200"
