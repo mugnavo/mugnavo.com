@@ -2,7 +2,8 @@
 import BaseLayout from "~/layouts/_base.astro";
 
 import HeroLogo from "~/components/home/HeroLogo.astro";
-import IntroCard from "~/components/home/IntroCard.astro";
+// import IntroCard from "~/components/home/IntroCard.astro";
+import IntroStack from "~/components/home/IntroStack.astro";
 import ServicesSection from "~/components/home/ServicesSection.astro";
 import Stars from "~/components/home/Stars.astro";
 
@@ -64,8 +65,11 @@ const introCards = [
   </section>
 
   <div class="flex flex-col">
-    <section class="grid w-full gap-4 rounded-3xl bg-neutral-900 p-2 sm:p-6 xl:grid-cols-2">
+    <!-- <section class="grid w-full gap-4 rounded-3xl bg-neutral-900 p-2 sm:p-6 xl:grid-cols-2">
       {introCards.map((intro) => <IntroCard {...intro} />)}
+    </section> -->
+    <section class="flex w-full gap-6 rounded-3xl bg-neutral-900">
+      <IntroStack />
     </section>
     <section class="flex min-h-[1080px] w-full items-center justify-center">
       <div class="flex w-fit flex-col items-center gap-16">
