@@ -54,7 +54,7 @@ export default function ContactForm() {
       <div class="flex w-full flex-wrap gap-4">
         <label
           for="name"
-          class="focus-within:border-primary/30 focus-within:ring-primary/30 relative block min-w-64 flex-1 overflow-hidden rounded-lg border border-neutral-800 bg-neutral-900 px-3 pt-3 shadow-xs focus-within:ring-1"
+          class="focus-within:border-primary/30 focus-within:ring-primary/30 bg-card relative block min-w-64 flex-1 overflow-hidden rounded-lg border border-neutral-800 px-3 pt-3 shadow-xs focus-within:ring-1"
         >
           <input
             type="text"
@@ -72,7 +72,7 @@ export default function ContactForm() {
         </label>
         <label
           for="email"
-          class="focus-within:border-primary/30 focus-within:ring-primary/30 relative block min-w-64 flex-1 overflow-hidden rounded-lg border border-neutral-800 bg-neutral-900 px-3 pt-3 shadow-xs focus-within:ring-1"
+          class="focus-within:border-primary/30 focus-within:ring-primary/30 bg-card relative block min-w-64 flex-1 overflow-hidden rounded-lg border border-neutral-800 px-3 pt-3 shadow-xs focus-within:ring-1"
         >
           <input
             type="email"
@@ -91,7 +91,7 @@ export default function ContactForm() {
       </div>
       <label
         for="text"
-        class="focus-within:border-primary/30 focus-within:ring-primary/30 relative block w-full overflow-hidden rounded-lg border border-neutral-800 bg-neutral-900 px-3 pt-3 shadow-xs focus-within:ring-1"
+        class="focus-within:border-primary/30 focus-within:ring-primary/30 bg-card relative block w-full overflow-hidden rounded-lg border border-neutral-800 px-3 pt-3 shadow-xs focus-within:ring-1"
       >
         <textarea
           name="text"
@@ -117,12 +117,12 @@ export default function ContactForm() {
         <button
           type="submit"
           class={
-            "active:border-primary flex max-w-full cursor-pointer items-center justify-center gap-1 rounded-xl border-2 border-transparent px-8 py-2 font-semibold text-neutral-950 shadow-md transition-all hover:brightness-90 disabled:pointer-events-none " +
+            "active:border-primary flex max-w-full cursor-pointer items-center justify-center gap-1 rounded-xl border-2 border-transparent px-8 py-2 font-semibold text-neutral-950 shadow-md transition-all duration-200 hover:brightness-70 disabled:pointer-events-none " +
             (status() === "sent"
               ? "bg-green-300"
               : status() === "error"
                 ? "bg-red-400"
-                : "bg-neutral-200")
+                : "bg-neutral-100")
           }
           disabled={status() !== null}
         >

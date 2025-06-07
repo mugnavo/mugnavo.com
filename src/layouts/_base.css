@@ -3,13 +3,15 @@
 @theme {
   --breakpoint-xs: 380px;
   --color-primary: #f5dc78;
+  --color-background: oklch(18% 0 0);
+  --color-card: oklch(21.4% 0 0);
   --font-main: var(--font-poppins), sans-serif;
 
   --animate-dash: dash 24s linear infinite;
   --animate-dashgold: dashgold 42s linear infinite;
   --animate-hero-load: hero-load 1.4s ease-out;
   --animate-hero-buttons: hero-buttons 1.4s ease-out;
-  --animate-fade: fade 1s ease-in;
+  --animate-fade: fade 1s ease-in-out;
 
   @keyframes dash {
     from {

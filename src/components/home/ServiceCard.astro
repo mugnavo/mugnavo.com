@@ -13,7 +13,7 @@ const { title, description, image, position } = Astro.props;
 
 <div
   data-position={position}
-  class={`_service-card pointer-coarse:translate-x-0 group relative overflow-hidden w-full rounded-3xl bg-neutral-900 opacity-0 transition-all duration-600 ${
+  class={`_service-card pointer-coarse:translate-x-0 group relative overflow-hidden w-full rounded-3xl bg-card opacity-0 transition-all duration-600 ${
     position === "left" ? "-translate-x-6" : "translate-x-6"
   }`}
 >
