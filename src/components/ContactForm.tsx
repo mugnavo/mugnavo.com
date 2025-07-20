@@ -99,12 +99,12 @@ export default function ContactForm() {
           rows={6}
           required
           ref={messageTextRef}
-          placeholder="Message"
+          placeholder="How can we help?"
           class="peer w-full resize-none border-none bg-transparent pt-2 placeholder-transparent focus:border-transparent focus:ring-0 focus:outline-hidden"
         />
 
         <span class="absolute start-3 top-3 -translate-y-1/2 text-xs text-neutral-400 transition-all peer-placeholder-shown:top-6 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
-          Message
+          How can we help?
         </span>
       </label>
       <div class="flex w-full justify-between">
