@@ -2,23 +2,19 @@
 import BaseLayout from "~/layouts/_base.astro";
 
 import HeroLogo from "~/components/home/HeroLogo.astro";
-// import IntroCard from "~/components/home/IntroCard.astro";
-import IntroStack from "~/components/home/IntroStack.astro";
+import IntroCard from "~/components/home/IntroCard.astro";
 import ServicesSection from "~/components/home/ServicesSection.astro";
 import Stars from "~/components/home/Stars.astro";
-
-import ContactForm from "~/components/ContactForm";
 
 // TODO
 const introCards = [
   {
-    title:
-      "Varo: The AI-powered matchmaking platform for developers, open-source projects, and indie founders.",
-    smTitle: "The AI-powered matchmaking platform for developers.",
-    xsTitle: "AI-powered matchmaking platform for devs.",
-    subtitle: "Our latest project",
+    title: "TODO",
+    smTitle: "TODO",
+    xsTitle: "TODO",
+    subtitle: "TODO",
     image: "https://placehold.co/300x300/png",
-    href: "https://varo.dev",
+    href: "https://github.com/mugnavo",
   },
   {
     title: "TODO BLOG POST",
@@ -32,13 +28,13 @@ const introCards = [
 ---
 
 <BaseLayout>
-  <section class="flex min-h-[790px] items-center justify-center gap-8">
+  <section class="flex min-h-[620px] items-center justify-center gap-8">
     <div class="w-full">
       <div
-        class="flex min-h-[420px] flex-col items-center gap-16 text-center md:items-start md:text-start"
+        class="flex min-h-[220px] flex-col items-center gap-16 text-center md:items-start md:text-start"
       >
         <h1
-          class="animate-hero-load max-w-sm text-3xl leading-snug font-bold sm:max-w-lg sm:text-6xl"
+          class="animate-hero-load max-w-sm text-3xl leading-snug font-bold sm:max-w-xl sm:text-6xl xl:max-w-3xl"
         >
           Digital products that can make a
           <span class="text-primary">difference.</span>
@@ -65,11 +61,8 @@ const introCards = [
   </section>
 
   <div class="flex flex-col">
-    <!-- <section class="grid w-full gap-4 rounded-3xl bg-card p-2 sm:p-6 xl:grid-cols-2">
+    <section class="bg-card grid w-full gap-4 rounded-3xl p-2 sm:p-6 xl:grid-cols-2">
       {introCards.map((intro) => <IntroCard {...intro} />)}
-    </section> -->
-    <section class="bg-card flex w-full gap-6 rounded-3xl">
-      <IntroStack />
     </section>
     <section class="flex min-h-[1080px] w-full items-center justify-center">
       <div class="flex w-fit flex-col items-center gap-16">
@@ -97,7 +90,7 @@ const introCards = [
         >
         <span class="text-3xl font-bold sm:text-5xl">Let's get in touch!</span>
       </div>
-      <ContactForm client:visible />
+      <!-- <ContactForm client:visible /> -->
     </section>
   </div>
 </BaseLayout>
