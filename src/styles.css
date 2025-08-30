@@ -3,9 +3,9 @@
 @theme {
   --breakpoint-xs: 380px;
   --color-primary: #f5dc78;
-  --color-background: oklch(22% 0 0);
+  --color-background: oklch(20% 0 0);
   --color-foreground: var(--foreground);
-  --color-card: oklch(25% 0 0);
+  --color-card: oklch(24% 0 0);
   --font-main: var(--font-poppins);
 
   --animate-dash: dash 24s linear infinite;
