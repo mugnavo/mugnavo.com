@@ -1,5 +1,5 @@
 ---
-import BaseLayout from "~/layouts/_base.astro";
+import BaseLayout from "~/layouts/base.astro";
 
 import HeroLogo from "~/components/home/HeroLogo.astro";
 import IntroCard from "~/components/home/IntroCard.astro";
@@ -31,7 +31,7 @@ const introCards = [
   <section class="flex min-h-[620px] items-center justify-center gap-8">
     <div class="w-full">
       <div
-        class="flex min-h-[220px] flex-col items-center gap-16 text-center md:items-start md:text-start"
+        class="flex min-h-[220px] flex-col items-center gap-10 text-center md:items-start md:text-start"
       >
         <h1
           class="animate-hero-load max-w-sm text-3xl leading-snug font-bold sm:max-w-xl sm:text-6xl xl:max-w-3xl"
@@ -46,14 +46,10 @@ const introCards = [
           <a
             href="#contact"
             title="Contact us"
-            class="inline-flex h-13 items-center justify-center rounded-xl bg-neutral-50 px-6 font-semibold text-neutral-950 transition-colors duration-300 hover:bg-neutral-300"
-            >Get in touch</a
+            class="inline-flex h-16 items-center justify-center rounded-xl bg-neutral-50 px-8 text-lg font-semibold text-neutral-950 transition-colors duration-300 hover:bg-neutral-300"
           >
-          <a
-            href="#services"
-            class="hover:bg-card inline-flex h-13 items-center justify-center rounded-xl px-6 font-semibold transition-colors duration-300"
-            >View services</a
-          >
+            Book a call
+          </a>
         </div>
       </div>
     </div>
