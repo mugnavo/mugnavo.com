@@ -6,7 +6,7 @@
   --color-background: oklch(20% 0 0);
   --color-foreground: var(--foreground);
   --color-card: oklch(24% 0 0);
-  --font-main: var(--font-poppins);
+  --font-primary: var(--font-primary);
 
   --animate-dash: dash 24s linear infinite;
   --animate-dashgold: dashgold 42s linear infinite;

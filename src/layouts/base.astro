@@ -16,7 +16,9 @@ export interface Props {
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 const { title, description = SITE_DESCRIPTION, image } = Astro.props;
-const fullTitle = title ? `${title} - ${SITE_TITLE}` : SITE_TITLE;
+const fullTitle = title
+  ? `${title} – ${SITE_TITLE}`
+  : `${SITE_TITLE} - Web Design & Development Solutions`;
 ---
 
 <!doctype html>
@@ -51,10 +53,10 @@ const fullTitle = title ? `${title} - ${SITE_TITLE}` : SITE_TITLE;
     <meta property="twitter:description" content={description} />
     {image && <meta property="twitter:image" content={new URL(image, Astro.url)} />}
 
-    <Font cssVariable="--font-poppins" preload />
+    <Font cssVariable="--font-primary" preload />
   </head>
   <body
-    class="font-main bg-background flex min-h-screen flex-col overflow-x-hidden text-neutral-200"
+    class="font-primary bg-background flex min-h-screen flex-col overflow-x-hidden text-neutral-200"
   >
     <Header />
     <main class="mx-auto min-h-[calc(100vh-9rem)] w-full max-w-screen-xl px-6 lg:px-10">

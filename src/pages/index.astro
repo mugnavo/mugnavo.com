@@ -38,9 +38,6 @@ const introCards = [
         Creating web products that drive
         <span class="text-primary">impact.</span>
       </h1>
-      <!-- <h2 class="max-w-sm text-lg text-neutral-300 sm:text-2xl md:max-w-md">
-          Products that can make a difference.
-        </h2> -->
       <div class="animate-hero-buttons flex gap-4 duration-75 max-sm:text-sm">
         <a
           href="#contact"
@@ -55,14 +52,14 @@ const introCards = [
   </section>
 
   <div class="flex flex-col">
-    <section class="bg-card grid w-full gap-4 rounded-3xl p-2 sm:p-6 xl:grid-cols-2">
+    <section class="bg-card grid w-full gap-4 rounded-3xl p-2 sm:p-6">
       {introCards.map((intro) => <IntroCard {...intro} />)}
     </section>
     <section class="flex min-h-[1080px] w-full items-center justify-center">
       <div class="flex w-fit flex-col items-center gap-16">
-        <span class="text-center text-2xl font-bold tracking-wide md:text-4xl"
-          >Building for the future.</span
-        >
+        <span class="text-center text-2xl font-bold tracking-wide md:text-4xl">
+          Building for the future.
+        </span>
         <p class="max-w-[42ch] text-lg tracking-wide text-neutral-300 md:text-2xl">
           We are a collective of developers and designers from the Philippines. Our mission is to
           push the boundaries of technological innovation by delivering products that excel in both
@@ -77,11 +74,11 @@ const introCards = [
     >
       <div id="contact" class="absolute top-16"></div>
       <div class="flex flex-col items-center gap-2 text-center">
-        <span class="text-xl text-neutral-400 sm:text-3xl"
-          >Got a project <span class="text-primary drop-shadow-[0_0_24px_rgba(245,220,120,0.8)]"
-            >idea</span
-          > in mind?</span
-        >
+        <span class="text-xl text-neutral-400 sm:text-3xl">
+          Got a project
+          <span class="text-primary drop-shadow-[0_0_24px_rgba(245,220,120,0.8)]"> idea </span>
+          in mind?
+        </span>
         <span class="text-3xl font-bold sm:text-5xl">Let's get in touch!</span>
       </div>
       <!-- <ContactForm client:visible /> -->
