@@ -13,7 +13,7 @@ const introCards = [
     smTitle: "TODO",
     xsTitle: "TODO",
     subtitle: "TODO",
-    image: "https://placehold.co/300x300/png",
+    image: "https://placehold.co/600x300/png",
     href: "https://github.com/mugnavo",
   },
   {
@@ -21,7 +21,7 @@ const introCards = [
     smTitle: "TODO BLOG POST",
     xsTitle: "TODO BLOG POST",
     subtitle: "Latest blog post",
-    image: "https://placehold.co/200x200/png",
+    image: "https://placehold.co/600x300/png",
     href: "https://venur.me",
   },
 ];
@@ -52,7 +52,7 @@ const introCards = [
   </section>
 
   <div class="flex flex-col">
-    <section class="bg-card grid w-full gap-4 rounded-3xl p-2 sm:p-6">
+    <section class="bg-card grid w-full gap-4 rounded-3xl p-4 md:grid-cols-2">
       {introCards.map((intro) => <IntroCard {...intro} />)}
     </section>
     <section class="flex min-h-[1080px] w-full items-center justify-center">
