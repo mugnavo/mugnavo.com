@@ -18,8 +18,6 @@
 </div>
 
 <script>
-  // TODO: improve gradient to emphasize tip, glow on scroll?
-  // use scroll speed/velocity for playback rate?
   let stars = document.querySelectorAll("._star");
   let animations: Animation[] = [];
   let scrollTimeout: number;
@@ -39,10 +37,7 @@
           iterations: Infinity,
         }
       );
-      //anim.updatePlaybackRate(24);
-      anim.playbackRate = 24;
-      // TODO: possible chrome bug, .updatePlaybackRate() causes animation position to jump
-      // also applied to code below
+      anim.updatePlaybackRate(24);
       animations.push(anim);
     });
   }
@@ -59,10 +54,10 @@
       window.clearTimeout(scrollTimeout);
 
       scrollTimeout = window.setTimeout(() => {
-        animations.forEach((a) => (a.playbackRate = 0.5));
+        animations.forEach((a) => a.updatePlaybackRate(0.5));
       }, 80);
       animations.forEach((a) => {
-        a.playbackRate = 8;
+        a.updatePlaybackRate(8);
       });
     },
     { passive: true }

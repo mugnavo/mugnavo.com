@@ -1,31 +1,26 @@
 ---
 interface Props {
   title: string;
-  smTitle: string;
-  xsTitle: string;
   subtitle: string;
   image: string;
   href: string;
 }
-const { title, subtitle, image, xsTitle, smTitle, href } = Astro.props;
+const { title, subtitle, image, href } = Astro.props;
 ---
 
-<!-- TODO: container queries? -->
-<a href="#" class="group relative">
+<a href={href} class="group relative">
   <div class="relative z-10 grid gap-1">
     <img src={image} alt={title} class="z-10 w-full rounded-2xl object-cover" />
 
     <div class="flex flex-col justify-between p-2 sm:p-4">
       <span class="max-xs:text-sm font-bold sm:text-lg md:text-2xl">
-        <span class="max-sm:hidden">{title}</span>
-        <span class="xs:inline hidden sm:hidden">{smTitle}</span>
-        <span class="xs:hidden">{xsTitle}</span>
+        <span>{title}</span>
       </span>
       <span class="text-xs tracking-wide text-neutral-400 sm:text-sm md:text-lg">{subtitle}</span>
     </div>
   </div>
   <div
-    class="absolute inset-0 h-full w-full scale-98 rounded-2xl bg-neutral-800/60 opacity-0 transition duration-200 group-hover:scale-100 group-hover:opacity-100"
+    class="absolute inset-0 h-full w-full scale-97 rounded-2xl bg-neutral-800/60 opacity-0 transition duration-250 group-hover:scale-100 group-hover:opacity-100"
   >
   </div>
 </a>
