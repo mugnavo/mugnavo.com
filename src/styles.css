@@ -3,8 +3,10 @@
 @theme {
   --breakpoint-xs: 380px;
   --color-primary: #f5dc78;
+  --color-primary-foreground: oklch(10% 0 0);
   --color-background: oklch(20% 0 0);
-  --color-foreground: var(--foreground);
+  --color-foreground: oklch(90% 0 0);
+  --color-foreground-muted: oklch(76% 0 0);
   --color-card: oklch(24% 0 0);
   --font-primary: var(--font-primary);
 
