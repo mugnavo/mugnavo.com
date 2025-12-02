@@ -1,11 +1,14 @@
-@import "tailwindcss" source("../");
+@import "tailwindcss";
 
 @theme {
   --breakpoint-xs: 380px;
   --color-primary: #f5dc78;
-  --color-background: oklch(18% 0 0);
-  --color-card: oklch(21.4% 0 0);
-  --font-main: var(--font-poppins), sans-serif;
+  --color-primary-foreground: oklch(10% 0 0);
+  --color-background: oklch(20% 0 0);
+  --color-foreground: oklch(90% 0 0);
+  --color-foreground-muted: oklch(76% 0 0);
+  --color-card: oklch(24% 0 0);
+  --font-primary: var(--font-primary);
 
   --animate-dash: dash 24s linear infinite;
   --animate-dashgold: dashgold 42s linear infinite;
