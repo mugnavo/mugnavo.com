@@ -6,9 +6,8 @@
     "strictNullChecks": true,
     // "jsx": "preserve",
     // "jsxImportSource": "solid-js",
-    "baseUrl": ".",
     "paths": {
-      "~/*": ["src/*"]
+      "~/*": ["./src/*"]
     }
   }
 }

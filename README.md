@@ -1,6 +1,6 @@
 # Mugnavo
 
-Our website built with Astro, Solid, and Tailwind CSS.
+Our website built with Astro and Tailwind CSS.
 
 https://mugnavo.com
 

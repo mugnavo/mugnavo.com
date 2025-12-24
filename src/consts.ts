@@ -1,3 +1,3 @@
 export const SITE_TITLE = "Mugnavo";
-export const SITE_DESCRIPTION = "A collective of developers and designers from the Philippines.";
+export const SITE_DESCRIPTION = "High-quality web design and development solutions.";
 // TODO

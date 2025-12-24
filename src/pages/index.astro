@@ -24,7 +24,7 @@ const introCards = [
 ---
 
 <BaseLayout>
-  <section class="flex min-h-[512px] justify-center">
+  <section class="flex min-h-128 justify-center">
     <div
       class="mt-24 flex w-full flex-col items-center gap-10 text-center md:items-start md:text-start"
     >
@@ -39,7 +39,7 @@ const introCards = [
           href="https://cal.com/mugnavo"
           target="_blank"
           rel="noopener noreferrer"
-          title="Contact us"
+          title="Book via Cal.com"
           class="bg-foreground text-background hover:bg-foreground/80 inline-flex h-16 items-center justify-center rounded-xl px-8 text-lg font-semibold transition-colors duration-300"
         >
           Book a call
@@ -53,7 +53,7 @@ const introCards = [
     <section class="bg-card grid w-full gap-4 rounded-3xl p-4 md:grid-cols-2">
       {introCards.map((intro) => <IntroCard {...intro} />)}
     </section>
-    <section class="flex min-h-[1080px] w-full items-center justify-center">
+    <section class="flex min-h-270 w-full items-center justify-center">
       <div class="flex w-fit flex-col items-center gap-16">
         <span class="text-center text-2xl font-bold tracking-wide md:text-4xl">
           Building for the future.
@@ -61,14 +61,14 @@ const introCards = [
         <p class="text-foreground/80 max-w-[42ch] text-lg tracking-wide md:text-2xl">
           We are a collective of developers and designers from the Philippines. Our mission is to
           push the boundaries of technological innovation by delivering products that excel in both
-          quality and scalability.
+          quality and innovation.
         </p>
       </div>
       <Stars />
     </section>
     <ServicesSection />
     <section
-      class="relative flex min-h-[768px] w-full flex-col items-center justify-center gap-16 2xl:min-h-[960px]"
+      class="relative flex min-h-172 w-full flex-col items-center justify-center gap-16 2xl:min-h-192"
     >
       <div id="contact" class="absolute top-16"></div>
       <div class="flex flex-col items-center gap-2 text-center">
@@ -79,7 +79,15 @@ const introCards = [
         </span>
         <span class="text-3xl font-bold sm:text-5xl">Let's get in touch!</span>
       </div>
-      <!-- <ContactForm client:visible /> -->
+      <a
+        href="https://cal.com/mugnavo"
+        target="_blank"
+        rel="noopener noreferrer"
+        title="Book via Cal.com"
+        class="bg-foreground text-background hover:bg-foreground/80 inline-flex h-16 items-center justify-center rounded-xl px-8 text-lg font-semibold transition-colors duration-300"
+      >
+        Book a call
+      </a>
     </section>
   </div>
 </BaseLayout>
