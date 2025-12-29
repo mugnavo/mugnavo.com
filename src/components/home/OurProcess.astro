@@ -1,56 +1,50 @@
-<!-- Section Header -->
-<div class="mb-10 max-w-2xl">
-  <h2 class="text-foreground text-2xl font-semibold sm:text-3xl">How We Work</h2>
-  <p class="text-foreground-muted mt-3">
-    A simple, transparent process focused on building websites that actually serve your business.
+---
+import Search from "@lucide/astro/icons/search";
+import Proportions from "@lucide/astro/icons/proportions";
+import CodeXml from "@lucide/astro/icons/code-xml";
+import Rocket from "@lucide/astro/icons/rocket";
+
+const steps = [
+  {
+    icon: Search,
+    title: "Discovery & Alignment",
+    description: "We hop on a call to understand your business, goals, and vision.",
+  },
+  {
+    icon: Proportions,
+    title: "Design & Prototype",
+    description: "Mockups are crafted based on your vision and refined until you're happy.",
+  },
+  {
+    icon: CodeXml,
+    title: "Build & Refine",
+    description: "We build in iterations, keeping you in the loop with regular updates.",
+  },
+  {
+    icon: Rocket,
+    title: "Launch & Support",
+    description: "Your product goes live, and we remain available for future improvements.",
+  },
+];
+---
+
+<div class="mb-6 text-center md:mb-12">
+  <h2 class="text-foreground mb-4 text-xl font-bold md:text-3xl">The Process</h2>
+  <p class="text-foreground-muted mx-auto max-w-2xl text-sm md:text-base">
+    A simple 4-step journey from your idea to a product you'll love.
   </p>
 </div>
 
-<!-- Process Steps -->
-<ol class="grid gap-8 sm:grid-cols-2">
-  <li class="flex gap-4">
-    <span class="text-foreground-muted/70 text-sm font-semibold">01</span>
-    <div>
-      <h3 class="text-foreground font-medium">Discovery & Alignment</h3>
-      <p class="text-foreground-muted mt-1 text-sm">
-        We learn about your business, goals, and audience to make sure we're solving the right
-        problem.
-      </p>
-    </div>
-  </li>
-
-  <li class="flex gap-4">
-    <span class="text-foreground-muted/70 text-sm font-semibold">02</span>
-    <div>
-      <h3 class="text-foreground font-medium">Design with Intent</h3>
-      <p class="text-foreground-muted mt-1 text-sm">
-        Clean layouts designed for clarity, usability, and conversion — not just visuals.
-      </p>
-    </div>
-  </li>
-
-  <li class="flex gap-4">
-    <span class="text-foreground-muted/70 text-sm font-semibold">03</span>
-    <div>
-      <h3 class="text-foreground font-medium">Build & Refine</h3>
-      <p class="text-foreground-muted mt-1 text-sm">
-        We write maintainable, responsive code and refine details that impact performance and UX.
-      </p>
-    </div>
-  </li>
-
-  <li class="flex gap-4">
-    <span class="text-foreground-muted/70 text-sm font-semibold">04</span>
-    <div>
-      <h3 class="text-foreground font-medium">Launch & Support</h3>
-      <p class="text-foreground-muted mt-1 text-sm">
-        We handle the launch and stay available for improvements, fixes, and future iterations.
-      </p>
-    </div>
-  </li>
-</ol>
-
-<!-- Optional closing line -->
-<p class="text-foreground-muted/80 mt-10 text-sm">
-  No bloated processes. No unnecessary tools. Just a clear path from idea to launch.
-</p>
+<div class="grid grid-cols-1 gap-x-2 md:grid-cols-2 lg:grid-cols-4">
+  {
+    steps.map(({ icon: Icon, title, description }) => (
+      <div class="flex flex-col items-center p-4 text-center">
+        <div class="bg-primary/20 text-primary mb-4 flex size-12 items-center justify-center rounded-2xl shadow-sm md:size-16">
+          <Icon class="size-4 md:size-6" />
+        </div>
+        <h3 class="text-foreground mb-2 font-semibold">{title}</h3>
+        <p class="text-foreground-muted/80 text-xs leading-relaxed">{description}</p>
+      </div>
+    ))
+  }
+</div>
