@@ -2,38 +2,45 @@
 import BaseLayout from "~/layouts/base.astro";
 
 import HeroLogo from "~/components/home/HeroLogo.astro";
-import IntroCard from "~/components/home/IntroCard.astro";
+// import IntroCard from "~/components/home/IntroCard.astro";
 import ServicesSection from "~/components/home/ServicesSection.astro";
 import Stars from "~/components/home/Stars.astro";
+import OurProcess from "~/components/home/OurProcess.astro";
 
 // TODO
-const introCards = [
-  {
-    title: "Venur",
-    subtitle: "TODO",
-    image: "https://placehold.co/600x300/png",
-    href: "https://github.com/mugnavo",
-  },
-  {
-    title: "Introducing templates",
-    subtitle: "Latest blog post",
-    image: "https://placehold.co/600x300/png",
-    href: "/templates",
-  },
-];
+// const introCards = [
+//   {
+//     title: "Venur",
+//     subtitle: "TODO",
+//     image: "https://placehold.co/600x300/png",
+//     href: "https://github.com/mugnavo",
+//   },
+//   {
+//     title: "Introducing templates",
+//     subtitle: "Latest blog post",
+//     image: "https://placehold.co/600x300/png",
+//     href: "/templates",
+//   },
+// ];
 ---
 
 <BaseLayout>
   <section class="flex min-h-128 justify-center">
     <div
-      class="mt-24 flex w-full flex-col items-center gap-10 text-center md:items-start md:text-start"
+      class="mt-24 flex w-full flex-col items-center gap-6 text-center md:items-start md:text-start"
     >
       <h1
-        class="animate-hero-load max-w-sm text-4xl leading-snug font-bold sm:max-w-3xl sm:text-6xl"
+        class="animate-hero-load max-w-sm text-4xl leading-snug font-bold sm:max-w-xl sm:text-5xl"
       >
-        Creating web products that drive
-        <span class="text-primary">impact.</span>
+        Modern web products, built with
+        <span class="text-primary">care.</span>
       </h1>
+      <h2
+        class="animate-hero-load text-foreground-muted mb-6 max-w-lg text-base md:max-w-xl md:text-lg"
+      >
+        Thoughtfully designed and developer-built websites and web apps for growing businesses and
+        startups.
+      </h2>
       <div class="animate-hero-buttons flex gap-4 duration-75 max-sm:text-sm">
         <a
           href="https://cal.com/mugnavo"
@@ -50,8 +57,11 @@ const introCards = [
   </section>
 
   <div class="flex flex-col">
-    <section class="bg-card grid w-full gap-4 rounded-3xl p-4 md:grid-cols-2">
+    <!-- <section class="bg-card grid w-full gap-4 rounded-3xl p-4 border border-foreground-muted/5 md:grid-cols-2">
       {introCards.map((intro) => <IntroCard {...intro} />)}
+    </section> -->
+    <section class="bg-card border-foreground-muted/5 w-full rounded-3xl border p-8">
+      <OurProcess />
     </section>
     <section class="flex min-h-270 w-full items-center justify-center">
       <div class="flex w-fit flex-col items-center gap-16">
@@ -59,9 +69,11 @@ const introCards = [
           Building for the future.
         </span>
         <p class="text-foreground/80 max-w-[42ch] text-lg tracking-wide md:text-2xl">
-          We are a collective of developers and designers from the Philippines. Our mission is to
-          push the boundaries of technological innovation by delivering products that excel in both
-          quality and innovation.
+          We're a small, developer-led studio based in the Philippines focused on building reliable,
+          modern web products for growing businesses and startups.
+          <br /><br />
+          Our mission is to push the boundaries of technological innovation by delivering products that
+          excel in both quality and innovation.
         </p>
       </div>
       <Stars />
@@ -79,15 +91,23 @@ const introCards = [
         </span>
         <span class="text-3xl font-bold sm:text-5xl">Let's get in touch!</span>
       </div>
-      <a
-        href="https://cal.com/mugnavo"
-        target="_blank"
-        rel="noopener noreferrer"
-        title="Book via Cal.com"
-        class="bg-foreground text-background hover:bg-foreground/80 inline-flex h-16 items-center justify-center rounded-xl px-8 text-lg font-semibold transition-colors duration-300"
-      >
-        Book a call
-      </a>
+      <div class="space-y-4">
+        <a
+          href="https://cal.com/mugnavo"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="Book via Cal.com"
+          class="bg-foreground text-background hover:bg-foreground/80 inline-flex h-16 items-center justify-center rounded-xl px-8 text-lg font-semibold transition-colors duration-300"
+        >
+          Book a call
+        </a>
+        <div class="flex flex-col items-center gap-1">
+          <span class="text-xs">Or reach out at:</span>
+          <a href="mailto:hello@mugnavo.com" class="text-primary text-sm hover:underline">
+            hello@mugnavo.com
+          </a>
+        </div>
+      </div>
     </section>
   </div>
 </BaseLayout>
