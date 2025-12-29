@@ -9,7 +9,7 @@ export default defineConfig({
   site: "https://mugnavo.com",
   integrations: [sitemap()],
   output: "static",
-  adapter: vercel(),
+  adapter: vercel({ webAnalytics: false }),
 
   vite: {
     plugins: [tailwindcss()],

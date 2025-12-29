@@ -1,8 +1,10 @@
 ---
-import { SITE_DESCRIPTION, SITE_TITLE } from "~/consts";
+import Analytics from "@vercel/analytics/astro";
 
 import { Font } from "astro:assets";
 import "../styles.css";
+
+import { SITE_DESCRIPTION, SITE_TITLE } from "~/consts";
 
 import Footer from "~/components/Footer.astro";
 import Header from "~/components/Header.astro";
@@ -63,5 +65,7 @@ const fullTitle = title
       <slot />
     </main>
     <Footer />
+
+    <Analytics />
   </body>
 </html>
