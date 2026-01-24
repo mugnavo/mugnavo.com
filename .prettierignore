@@ -7,3 +7,4 @@ bun.lock
 dist/
 .vercel/
 node_modules/
+.wrangler
