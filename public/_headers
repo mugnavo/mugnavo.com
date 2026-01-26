@@ -1,5 +1,6 @@
 # Astro generated assets (hash-based filenames)
 /_astro/*
+  ! Cache-Control
   Cache-Control: public, max-age=31536000, immutable
 
 # Top-level media files (1 month - non-hashed filenames like favicons)
