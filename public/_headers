@@ -23,6 +23,8 @@
   Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
 /*.webm
   Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
+/*.webmanifest
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
 
 # Subfolder media files (1 year - can use new filenames for fresh cache)
 /images/*
