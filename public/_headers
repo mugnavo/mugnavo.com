@@ -29,10 +29,14 @@
 
 # Subfolder media files (1 year - can use new filenames for fresh cache)
 /images/*
+  ! Cache-Control
   Cache-Control: public, max-age=31536000, immutable
 /assets/*
+  ! Cache-Control
   Cache-Control: public, max-age=31536000, immutable
 /media/*
+  ! Cache-Control
   Cache-Control: public, max-age=31536000, immutable
 /videos/*
+  ! Cache-Control
   Cache-Control: public, max-age=31536000, immutable
