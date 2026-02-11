@@ -13,16 +13,14 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
 
-  experimental: {
-    fonts: [
-      {
-        provider: fontProviders.google(),
-        name: "Poppins",
-        cssVariable: "--font-primary",
-        fallbacks: ["sans-serif"],
-        styles: ["normal"],
-        subsets: ["latin"],
-      },
-    ],
-  },
+  fonts: [
+    {
+      provider: fontProviders.google(),
+      name: "Poppins",
+      cssVariable: "--font-primary",
+      fallbacks: ["sans-serif"],
+      styles: ["normal"],
+      subsets: ["latin"],
+    },
+  ],
 });
