@@ -5,25 +5,25 @@ import HeroLogo from "@/components/home/HeroLogo.astro";
 // import IntroCard from "@/components/home/IntroCard.astro";
 import ServicesSection from "@/components/home/ServicesSection.astro";
 import Stars from "@/components/home/Stars.astro";
-import OurProcess from "@/components/home/OurProcess.astro";
 
 import { RiArrowRightUpLine } from "@remixicon/react";
+import IntroCard from "@/components/home/IntroCard.astro";
 
 // TODO
-// const introCards = [
-//   {
-//     title: "Venur",
-//     subtitle: "TODO",
-//     image: "https://placehold.co/600x300/png",
-//     href: "https://github.com/mugnavo",
-//   },
-//   {
-//     title: "Introducing templates",
-//     subtitle: "Latest blog post",
-//     image: "https://placehold.co/600x300/png",
-//     href: "/templates",
-//   },
-// ];
+const introCards = [
+  {
+    title: "Venur",
+    subtitle: "TODO",
+    image: "https://placehold.co/600x300/png",
+    href: "https://github.com/mugnavo",
+  },
+  {
+    title: "Introducing templates",
+    subtitle: "Latest blog post",
+    image: "https://placehold.co/600x300/png",
+    href: "/templates",
+  },
+];
 ---
 
 <BaseLayout>
@@ -60,11 +60,10 @@ import { RiArrowRightUpLine } from "@remixicon/react";
   </section>
 
   <div class="flex flex-col">
-    <!-- <section class="bg-card grid w-full gap-4 rounded-3xl p-4 border border-muted-foreground/5 md:grid-cols-2">
+    <section
+      class="bg-card border-muted-foreground/5 grid w-full gap-4 rounded-3xl border p-4 shadow-xs md:grid-cols-2"
+    >
       {introCards.map((intro) => <IntroCard {...intro} />)}
-    </section> -->
-    <section class="bg-card border-muted-foreground/5 w-full rounded-3xl border p-8">
-      <OurProcess />
     </section>
     <section class="flex min-h-270 w-full items-center justify-center">
       <div class="flex w-fit flex-col items-center gap-16">

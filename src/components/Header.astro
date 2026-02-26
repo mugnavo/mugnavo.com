@@ -1,4 +1,6 @@
 ---
+import { ThemeToggle } from "./theme-toggle";
+
 const pathname = Astro.url.pathname;
 ---
 
@@ -11,21 +13,24 @@ const pathname = Astro.url.pathname;
   >
     Mugnavo
   </a>
-  <nav class="flex items-center gap-8">
-    <a
-      title="Services"
-      class="hidden font-medium transition hover:brightness-150 sm:block"
-      href="#services"
-    >
-      Services
-    </a>
+  <div class="flex items-center gap-6">
+    <ThemeToggle client:idle />
+    <nav class="flex items-center gap-8">
+      <a
+        title="Services"
+        class="hidden font-medium transition hover:brightness-150 sm:block"
+        href="#services"
+      >
+        Services
+      </a>
 
-    <a
-      title="Contact"
-      href="#contact"
-      class="bg-primary text-primary-foreground hover:bg-foreground inline-flex h-13 items-center justify-center rounded-xl px-6 font-semibold transition-colors duration-300"
-    >
-      Get in touch
-    </a>
-  </nav>
+      <a
+        title="Contact"
+        href="#contact"
+        class="bg-primary text-primary-foreground hover:bg-foreground inline-flex h-13 items-center justify-center rounded-xl px-6 font-semibold transition-colors duration-300"
+      >
+        Get in touch
+      </a>
+    </nav>
+  </div>
 </header>

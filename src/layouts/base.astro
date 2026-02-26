@@ -54,6 +54,21 @@ const fullTitle = title
     {image && <meta property="twitter:image" content={new URL(image, Astro.url)} />}
 
     <Font cssVariable="--font-sans" preload />
+
+    <script is:inline>
+      function setTheme(doc) {
+        const storedTheme =
+          typeof localStorage !== "undefined" ? localStorage.getItem("theme") : null;
+        const isDark = storedTheme
+          ? storedTheme === "dark"
+          : window.matchMedia("(prefers-color-scheme: dark)").matches;
+        doc.documentElement.classList[isDark ? "add" : "remove"]("dark");
+      }
+      setTheme(document);
+      document.addEventListener("astro:before-swap", (ev) => setTheme(ev.newDocument));
+
+      console.log("Hello, fellow developer! 👋");
+    </script>
   </head>
   <body class="flex min-h-screen flex-col overflow-x-hidden">
     <Header />
