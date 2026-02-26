@@ -1,27 +1,24 @@
 ---
-import Search from "@lucide/astro/icons/search";
-import Proportions from "@lucide/astro/icons/proportions";
-import CodeXml from "@lucide/astro/icons/code-xml";
-import Rocket from "@lucide/astro/icons/rocket";
+import { RiSearchLine, RiLayoutLine, RiCodeSSlashLine, RiSpaceShip2Line } from "@remixicon/react";
 
 const steps = [
   {
-    icon: Search,
+    icon: RiSearchLine,
     title: "Discovery & Alignment",
     description: "We hop on a call to understand your business, goals, and vision.",
   },
   {
-    icon: Proportions,
+    icon: RiLayoutLine,
     title: "Design & Prototype",
     description: "Mockups are crafted based on your vision and refined until you're happy.",
   },
   {
-    icon: CodeXml,
+    icon: RiCodeSSlashLine,
     title: "Build & Refine",
     description: "We build in iterations, keeping you in the loop with regular updates.",
   },
   {
-    icon: Rocket,
+    icon: RiSpaceShip2Line,
     title: "Launch & Support",
     description: "Your product goes live, and we remain available for future improvements.",
   },
@@ -30,7 +27,7 @@ const steps = [
 
 <div class="mb-6 text-center md:mb-12">
   <h2 class="text-foreground mb-4 text-xl font-bold md:text-3xl">The Process</h2>
-  <p class="text-foreground-muted mx-auto max-w-2xl text-sm md:text-base">
+  <p class="text-muted-foreground mx-auto max-w-2xl text-sm md:text-base">
     A simple 4-step journey from your idea to a product you'll love.
   </p>
 </div>
@@ -40,10 +37,10 @@ const steps = [
     steps.map(({ icon: Icon, title, description }) => (
       <div class="flex flex-col items-center p-4 text-center">
         <div class="bg-primary/20 text-primary mb-4 flex size-12 items-center justify-center rounded-2xl shadow-sm md:size-16">
-          <Icon class="size-4 md:size-6" />
+          <Icon className="size-4 md:size-6" />
         </div>
         <h3 class="text-foreground mb-2 font-semibold">{title}</h3>
-        <p class="text-foreground-muted/80 text-xs leading-relaxed">{description}</p>
+        <p class="text-muted-foreground/80 text-xs leading-relaxed">{description}</p>
       </div>
     ))
   }

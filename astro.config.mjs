@@ -33,7 +33,7 @@ export default defineConfig({
     {
       provider: fontProviders.google(),
       name: "Poppins",
-      cssVariable: "--font-primary",
+      cssVariable: "--font-sans",
       fallbacks: ["sans-serif"],
       styles: ["normal"],
       subsets: ["latin"],
