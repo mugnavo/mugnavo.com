@@ -7,7 +7,7 @@
     // "jsx": "preserve",
     // "jsxImportSource": "solid-js",
     "paths": {
-      "~/*": ["./src/*"]
+      "@/*": ["./src/*"]
     }
   }
 }
