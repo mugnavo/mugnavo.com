@@ -8,32 +8,43 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "format": "prettier -w .",
+    "lint": "oxlint --type-aware --type-check",
+    "lint:fix": "oxlint --type-aware --type-check --fix",
+    "format": "prettier --write .",
+    "check": "pnpm format && pnpm lint && astro check",
     "prepare": "husky",
     "deps": "pnpm dlx taze@latest -Ilw",
     "deps:major": "pnpm dlx taze@latest major -Ilw"
   },
-  "lint-staged": {
-    "*": "prettier --ignore-unknown --write"
-  },
   "dependencies": {
     "@astrojs/check": "^0.9.7-beta.1",
+    "@astrojs/react": "^5.0.0-beta.3",
     "@astrojs/sitemap": "3.6.1-beta.3",
     "@lucide/astro": "^0.575.0",
-    "@tailwindcss/vite": "^4.2.1",
-    "astro": "^6.0.0-beta.16",
-    "sharp": "^0.34.5",
-    "tailwindcss": "^4.2.1",
-    "typescript": "^5.9.3"
+    "astro": "^6.0.0-beta.17",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "sharp": "^0.34.5"
   },
   "devDependencies": {
+    "@tailwindcss/vite": "^4.2.1",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "babel-plugin-react-compiler": "^1.0.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
+    "oxlint": "^1.50.0",
+    "oxlint-tsgolint": "^0.15.0",
     "prettier": "^3.8.1",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-organize-imports": "^4.3.0",
     "prettier-plugin-tailwindcss": "^0.7.2",
+    "tailwindcss": "^4.2.1",
+    "typescript": "^5.9.3",
     "wrangler": "^4.69.0"
+  },
+  "lint-staged": {
+    "*": "prettier --ignore-unknown --write"
   },
   "pnpm": {
     "onlyBuiltDependencies": [

@@ -1,0 +1,39 @@
+{
+  "files.readonlyInclude": {
+    "**/.astro/**/*": true,
+    "**/worker-configuration.d.ts": true,
+    "pnpm-lock.yaml": true,
+    "bun.lock": true
+  },
+  "files.watcherExclude": {
+    "**/.astro/**/*": true,
+    "**/worker-configuration.d.ts": true,
+    "pnpm-lock.yaml": true,
+    "bun.lock": true
+  },
+  "search.exclude": {
+    "**/.astro/**/*": true,
+    "**/worker-configuration.d.ts": true,
+    "pnpm-lock.yaml": true,
+    "bun.lock": true
+  },
+
+  // use LF line endings
+  "files.eol": "\n",
+
+  // oxlint + prettier
+  "eslint.enable": false,
+  "prettier.enable": true,
+  "oxc.enable.oxlint": true,
+
+  // type-aware linting
+  "oxc.typeAware": true,
+
+  // set prettier as default formatter for json, ts, tsx, js, jsx, html, css
+  "[json][jsonc][typescript][typescriptreact][javascript][javascriptreact][html][css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[astro]": {
+    "editor.defaultFormatter": "astro-build.astro-vscode"
+  }
+}
