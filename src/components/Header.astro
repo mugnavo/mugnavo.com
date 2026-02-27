@@ -1,5 +1,5 @@
 ---
-import { ThemeToggle } from "./theme-toggle";
+import { ButtonLink } from "@/components/ui/button-link";
 
 const pathname = Astro.url.pathname;
 ---
@@ -13,24 +13,28 @@ const pathname = Astro.url.pathname;
   >
     Mugnavo
   </a>
-  <div class="flex items-center gap-6">
-    <ThemeToggle client:idle />
-    <nav class="flex items-center gap-8">
-      <a
-        title="Services"
-        class="hidden font-medium transition hover:brightness-150 sm:block"
-        href="#services"
-      >
-        Services
-      </a>
+  <nav class="flex items-center gap-4">
+    <ButtonLink
+      size="xl"
+      variant="ghost"
+      className="font-medium"
+      linkProps={{
+        href: "#services",
+        title: "Services",
+      }}
+    >
+      Services
+    </ButtonLink>
 
-      <a
-        title="Contact"
-        href="#contact"
-        class="bg-primary text-primary-foreground hover:bg-foreground inline-flex h-13 items-center justify-center rounded-xl px-6 font-semibold transition-colors duration-300"
-      >
-        Get in touch
-      </a>
-    </nav>
-  </div>
+    <ButtonLink
+      size="xl"
+      variant="default"
+      linkProps={{
+        href: "#contact",
+        title: "Contact",
+      }}
+    >
+      Get in touch
+    </ButtonLink>
+  </nav>
 </header>

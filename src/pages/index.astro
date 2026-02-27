@@ -8,6 +8,7 @@ import Stars from "@/components/home/Stars.astro";
 
 import { RiArrowRightUpLine } from "@remixicon/react";
 import IntroCard from "@/components/home/IntroCard.astro";
+import { ButtonLink } from "@/components/ui/button-link";
 
 // TODO
 const introCards = [
@@ -43,25 +44,27 @@ const introCards = [
         Thoughtfully designed and developer-built websites and web apps for growing businesses and
         startups.
       </h2>
-      <div class="animate-hero-buttons flex gap-4 duration-75 max-sm:text-sm">
-        <a
-          href="https://cal.com/mugnavo"
-          target="_blank"
-          rel="noopener noreferrer"
-          title="Book via Cal.com"
-          class="bg-foreground text-background hover:bg-foreground/80 inline-flex h-14 items-center justify-center gap-2 rounded-xl pr-4 pl-6 text-lg font-semibold transition-colors duration-300"
-        >
-          Book a call
-          <RiArrowRightUpLine />
-        </a>
-      </div>
+      <ButtonLink
+        size="2xl"
+        variant="secondary"
+        className="pr-4"
+        linkProps={{
+          href: "https://cal.com/mugnavo",
+          target: "_blank",
+          rel: "noopener noreferrer",
+          title: "Book via Cal.com",
+        }}
+      >
+        Book a call
+        <RiArrowRightUpLine className="size-6" />
+      </ButtonLink>
     </div>
     <HeroLogo />
   </section>
 
   <div class="flex flex-col">
     <section
-      class="bg-card border-muted-foreground/5 grid w-full gap-4 rounded-3xl border p-4 shadow-xs md:grid-cols-2"
+      class="bg-card border-muted-foreground/5 grid w-full gap-4 rounded-3xl border p-4 md:grid-cols-2"
     >
       {introCards.map((intro) => <IntroCard {...intro} />)}
     </section>
@@ -94,16 +97,20 @@ const introCards = [
         <span class="text-3xl font-bold sm:text-5xl">Let's get in touch!</span>
       </div>
       <div class="space-y-4">
-        <a
-          href="https://cal.com/mugnavo"
-          target="_blank"
-          rel="noopener noreferrer"
-          title="Book via Cal.com"
-          class="bg-foreground text-background hover:bg-foreground/80 inline-flex h-14 items-center justify-center gap-2 rounded-xl pr-4 pl-6 text-lg font-semibold transition-colors duration-300"
+        <ButtonLink
+          size="2xl"
+          variant="secondary"
+          className="pr-4"
+          linkProps={{
+            href: "https://cal.com/mugnavo",
+            target: "_blank",
+            rel: "noopener noreferrer",
+            title: "Book via Cal.com",
+          }}
         >
           Book a call
-          <RiArrowRightUpLine />
-        </a>
+          <RiArrowRightUpLine className="size-6" />
+        </ButtonLink>
         <div class="flex flex-col items-center gap-1">
           <span class="text-muted-foreground text-xs">Or reach out at:</span>
           <a
