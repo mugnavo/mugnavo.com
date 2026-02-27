@@ -3,7 +3,8 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
-@custom-variant dark (&:is(.dark *));
+/* dark variant always enabled */
+@custom-variant dark (&);
 
 :root {
   color-scheme: dark;
