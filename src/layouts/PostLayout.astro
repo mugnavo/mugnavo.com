@@ -9,7 +9,7 @@ type Props = CollectionData;
 const { title, description, image, author, pubDate, updatedDate } = Astro.props;
 ---
 
-<BaseLayout title={title} description={description} image={image}>
+<BaseLayout title={title} description={description} image={image} author={author.name}>
   <div class="mt-8 mb-4 space-y-8">
     <article>
       <div class="flex flex-col gap-1">

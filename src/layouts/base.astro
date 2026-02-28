@@ -11,11 +11,12 @@ export interface Props {
   title?: string;
   description?: string;
   image?: string;
+  author?: string;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const { title, description = SITE_DESCRIPTION, image } = Astro.props;
+const { title, description = SITE_DESCRIPTION, image, author } = Astro.props;
 const fullTitle = title
   ? `${title} – ${SITE_TITLE}`
   : `${SITE_TITLE} – Web solutions built with care.`;
@@ -37,7 +38,7 @@ const fullTitle = title
 
     <title>{fullTitle}</title>
     <meta name="title" content={fullTitle} />
-    {/* <meta name="author" content="TODO" /> */}
+    {author && <meta name="author" content={author} />}
     <meta name="description" content={description} />
 
     <meta property="og:site_name" content={SITE_TITLE} />
