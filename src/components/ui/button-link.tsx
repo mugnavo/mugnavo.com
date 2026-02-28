@@ -5,8 +5,8 @@ export function ButtonLink({
   linkProps,
   ...props
 }: React.ComponentProps<typeof Button> & { linkProps?: React.ComponentPropsWithoutRef<"a"> }) {
-  // oxlint-disable-next-line jsx_a11y/anchor-has-content
   return (
+    // oxlint-disable-next-line jsx_a11y/anchor-has-content
     <Button {...props} render={<a {...linkProps} />}>
       {children}
     </Button>

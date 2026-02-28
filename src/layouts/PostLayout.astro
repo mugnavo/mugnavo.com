@@ -1,0 +1,72 @@
+---
+import { Image } from "astro:assets";
+import { type CollectionEntry } from "astro:content";
+import BaseLayout from "./base.astro";
+
+type CollectionData = CollectionEntry<"blog">["data"];
+
+type Props = CollectionData;
+const { title, description, image, author, pubDate, updatedDate } = Astro.props;
+---
+
+<BaseLayout title={title} description={description} image={image}>
+  <div class="mt-8 mb-4 space-y-8">
+    <article>
+      <div class="flex flex-col gap-1">
+        <time datetime={pubDate.toISOString()}>
+          {
+            pubDate.toLocaleDateString("en-us", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })
+          }
+        </time>
+
+        {
+          updatedDate && (
+            <div class="text-xs opacity-90">
+              updated on{" "}
+              <time datetime={updatedDate.toISOString()}>
+                {updatedDate.toLocaleDateString("en-us", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </time>
+            </div>
+          )
+        }
+      </div>
+
+      <div class="mt-2 mb-10 flex flex-col gap-1.5">
+        <h1 class="text-3xl font-bold">
+          {title}
+        </h1>
+
+        <div>
+          <!-- author -->
+          <span class="text-sm opacity-90">
+            by {author.name}
+          </span>
+        </div>
+
+        {
+          image && (
+            <Image width={720} height={360} src={image} alt="" class="rounded-md shadow-md" />
+          )
+        }
+      </div>
+      <div class="prose min-w-0">
+        <slot />
+      </div>
+    </article>
+
+    <button
+      class="text-accent group cursor-pointer"
+      onclick={"window.scrollTo({ top: 0, behavior: 'smooth' })"}
+    >
+      &uparrow; <span class="group-hover:underline">back to top</span>
+    </button>
+  </div>
+</BaseLayout>

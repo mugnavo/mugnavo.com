@@ -1,0 +1,45 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@/layouts/base.astro";
+const blog = (await getCollection("blog")).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<BaseLayout title="Blog">
+  <div class="space-y-6">
+    <h1 class="text-3xl font-bold">posts</h1>
+    <section>
+      <ul class="flex flex-col">
+        {
+          blog.map((post) => (
+            <li>
+              <a
+                href={`/blog/${post.id.split("/").pop()}/`}
+                class="group flex w-full flex-wrap gap-2 md:flex-nowrap md:gap-4"
+              >
+                <div class="flex w-[20ch] gap-2 text-sm">
+                  <span class="text-foreground/90 md:mt-1">
+                    <time datetime={post.data.pubDate.toISOString()}>
+                      {post.data.pubDate.toLocaleDateString("en-us", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}
+                    </time>
+                  </span>
+                </div>
+                <span class="mb-10 flex w-full flex-col gap-2">
+                  <span class="group-hover:text-accent text-lg font-semibold underline-offset-2 transition-all group-hover:underline">
+                    {post.data.title}
+                  </span>
+                  <span class="text-foreground/90 h-full text-sm">{post.data.description}</span>
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </div>
+</BaseLayout>
