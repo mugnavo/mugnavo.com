@@ -1,9 +1,12 @@
 import { defineConfig, fontProviders } from "astro/config";
 
-import sitemap from "@astrojs/sitemap";
-import tailwindcss from "@tailwindcss/vite";
-
+import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
+import sitemap from "@astrojs/sitemap";
+import { pluginCollapsibleSections } from "@expressive-code/plugin-collapsible-sections";
+import expressiveCode from "astro-expressive-code";
+
+import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
@@ -21,6 +24,11 @@ export default defineConfig({
         ],
       },
     }),
+    expressiveCode({
+      themes: ["dark-plus"],
+      plugins: [pluginCollapsibleSections()],
+    }),
+    mdx(),
     sitemap(),
   ],
   output: "static",
