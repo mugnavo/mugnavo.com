@@ -1,14 +1,12 @@
 ---
-import type { ImageMetadata } from "astro";
-import { Image } from "astro:assets";
 interface Props {
   title: string;
   description: string;
-  image: ImageMetadata;
+  imageSrc: string;
   position: "left" | "right";
 }
 
-const { title, description, image, position } = Astro.props;
+const { title, description, imageSrc, position } = Astro.props;
 ---
 
 <div
@@ -17,17 +15,21 @@ const { title, description, image, position } = Astro.props;
     position === "left" ? "-translate-x-6" : "translate-x-6"
   }`}
 >
-  <div class="absolute inset-0 z-10 flex flex-col gap-4 p-6 md:p-12 lg:gap-6 lg:p-14">
-    <div class="text-xl font-bold md:text-2xl lg:text-3xl">{title}</div>
-    <div class="xs:text-base text-foreground-muted text-sm sm:text-sm md:text-base lg:text-xl">
+  <div
+    class="absolute inset-0 z-10 flex flex-col gap-4 p-6 sm:gap-2 sm:p-4 md:gap-4 md:p-6 lg:p-12 xl:gap-6 xl:p-14"
+  >
+    <div class="text-xl font-bold sm:text-base md:text-xl lg:text-2xl xl:text-3xl">
+      {title}
+    </div>
+    <div class="text-foreground-muted xs:text-base text-sm sm:text-sm lg:text-base xl:text-xl">
       {description}
     </div>
   </div>
-  <Image
+  <img
     loading="lazy"
     decoding="async"
-    src={image}
+    src={imageSrc}
     alt={title}
-    class="w-full translate-y-2 brightness-90 grayscale-70 transition duration-500 group-hover:translate-y-0 group-hover:filter-none pointer-coarse:grayscale-0"
+    class="w-full translate-y-2 brightness-90 grayscale-40 transition duration-500 group-hover:translate-y-0 group-hover:filter-none! group-focus:translate-y-0 group-focus:filter-none! group-active:translate-y-0 group-active:filter-none! pointer-coarse:filter-none!"
   />
 </div>

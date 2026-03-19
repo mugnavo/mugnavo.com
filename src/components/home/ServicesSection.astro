@@ -1,41 +1,39 @@
 ---
 import ServiceCard from "./ServiceCard.astro";
 
-import webImage from "@/assets/services/web.png";
-import mobileImage from "@/assets/services/mobile.png";
-import dashboardImage from "@/assets/services/dashboard.png";
-import backendImage from "@/assets/services/backend.png";
-
 const services = [
   {
     title: "Websites",
     description:
-      "Responsive, performant, and SEO-optimized websites for you to stay ahead of the competition.",
-    image: webImage,
+      "High-performance, SEO-optimized websites and marketing pages built for speed and conversion.",
+    imageSrc: "/images/services-v1/web.webp",
   },
   {
     title: "Mobile Apps",
-    description: "Go cross-platform with Android, iOS, and web apps for seamless user experiences.",
-    image: mobileImage,
+    description:
+      "Cross-platform apps for Android and iOS built with native-level performance and UX.",
+    imageSrc: "/images/services-v1/mobile.webp",
   },
   {
-    title: "Ecommerce & CMS Dashboards",
-    description: "Accessible & intuitive web applications for ecommerce and content-driven sites.",
-    image: dashboardImage,
+    title: "Commerce & Content",
+    description:
+      "Bespoke ecommerce and content-driven systems designed for brand growth and heavy lifting.",
+    imageSrc: "/images/services-v1/commerce.webp",
   },
   {
-    title: "Internal Tools and APIs",
-    description: "Efficient internal solutions designed to optimize your business operations.",
-    image: backendImage,
+    title: "SaaS & Cloud Solutions",
+    description:
+      "Scalable software-as-a-service products built with robust architectures and seamless user workflows.",
+    imageSrc: "/images/services-v1/saas.webp",
   },
-];
+] as const;
 ---
 
-<section class="relative flex gap-12 md:gap-16">
+<section class="relative flex gap-12 sm:gap-6 xl:gap-16">
   <div id="services" class="absolute -top-32"></div>
-  <div class="flex flex-1 flex-col gap-12 md:gap-16">
+  <div class="flex flex-1 flex-col gap-12 sm:gap-6 xl:gap-16">
     <div class="h-12 text-3xl font-bold sm:h-32 sm:text-5xl">What we offer</div>
-    <div class="flex flex-col gap-12 sm:hidden md:gap-16">
+    <div class="flex flex-col gap-12 sm:hidden sm:gap-6 xl:gap-16">
       {
         services
           .filter((_, i) => i % 2 === 0)
@@ -48,7 +46,7 @@ const services = [
         .map((service) => <ServiceCard {...service} position="left" />)
     }
   </div>
-  <div class="hidden flex-1 flex-col gap-12 sm:flex md:gap-16">
+  <div class="hidden flex-1 flex-col gap-12 sm:flex sm:gap-6 xl:gap-16">
     {
       services
         .filter((_, i) => i % 2 === 0)
