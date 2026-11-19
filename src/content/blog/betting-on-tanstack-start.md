@@ -3,7 +3,7 @@ title: "Betting on TanStack Start"
 pubDate: "2026-11-19"
 description: "We tried TanStack Start in its first public alpha and committed to it once it reached beta. Now that it's stable, here's why we're still betting on it."
 author:
-  name: "Nathaniel John Tampus"
+  name: "nize"
   url: "https://nize.ph"
 ---
 

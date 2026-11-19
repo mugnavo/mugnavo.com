@@ -3,7 +3,7 @@ title: "What to prepare before you start a website project"
 pubDate: "2026-10-23"
 description: "The few things worth sorting out before a website project starts, and the things you can safely skip."
 author:
-  name: "Nathaniel John Tampus"
+  name: "nize"
   url: "https://nize.ph"
 ---
 
