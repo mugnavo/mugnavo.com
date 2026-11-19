@@ -1,0 +1,136 @@
+---
+import { Font } from "astro:assets";
+import { ClientRouter } from "astro:transitions";
+import type { Organization, Thing, WebSite, WithContext } from "schema-dts";
+
+import Footer from "#/components/Footer.astro";
+import Navbar from "#/components/Navbar.astro";
+import {
+  SITE_CONTACT_EMAIL,
+  SITE_DESCRIPTION,
+  SITE_LOGO_URL,
+  SITE_ORGANIZATION_ID,
+  SITE_SOCIALS,
+  SITE_TITLE,
+  SITE_URL,
+  SITE_WEBSITE_ID,
+} from "#/lib/consts.ts";
+
+import "#/styles.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  /** Site-relative or absolute URL for social previews, usually one rendered under /og/ */
+  image?: string;
+  author?: string;
+  /** Marks the page as an article for social previews, like a blog post */
+  article?: { publishedTime: Date; modifiedTime?: Date };
+  /** Page-level JSON-LD, emitted alongside the site-wide organization and website graph */
+  structuredData?: WithContext<Thing>;
+  /** For pages that shouldn't be indexed or canonicalized, like the 404 page */
+  noindex?: boolean;
+}
+
+const {
+  title = `${SITE_TITLE} – Web products, built with care.`,
+  description = SITE_DESCRIPTION,
+  image = "/og/default.png",
+  author,
+  article,
+  structuredData,
+  noindex = false,
+} = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
+const imageUrl = new URL(image, SITE_URL).href;
+
+const organizationSchema: Organization = {
+  "@type": "Organization",
+  "@id": SITE_ORGANIZATION_ID,
+  name: SITE_TITLE,
+  url: SITE_URL,
+  description: SITE_DESCRIPTION,
+  email: SITE_CONTACT_EMAIL,
+  sameAs: SITE_SOCIALS.map((social) => social.href),
+  logo: {
+    "@type": "ImageObject",
+    url: SITE_LOGO_URL,
+  },
+};
+const websiteSchema: WebSite = {
+  "@type": "WebSite",
+  "@id": SITE_WEBSITE_ID,
+  name: SITE_TITLE,
+  url: SITE_URL,
+  description: SITE_DESCRIPTION,
+  publisher: {
+    "@id": SITE_ORGANIZATION_ID,
+  },
+};
+const siteStructuredData = {
+  "@context": "https://schema.org",
+  "@graph": [organizationSchema, websiteSchema],
+};
+---
+
+<!doctype html>
+<html lang="en" transition:animate="none">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    {author && <meta name="author" content={author} />}
+    {noindex ? (
+      <meta name="robots" content="noindex" />
+    ) : (
+      <link rel="canonical" href={canonicalUrl} />
+    )}
+
+    {/* Open Graph */}
+    <meta property="og:site_name" content={SITE_TITLE} />
+    <meta property="og:type" content={article ? "article" : "website"} />
+    {article && (
+      <meta property="article:published_time" content={article.publishedTime.toISOString()} />
+    )}
+    {article?.modifiedTime && (
+      <meta property="article:modified_time" content={article.modifiedTime.toISOString()} />
+    )}
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={title} />
+
+    {/* Twitter Card */}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalUrl} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
+
+    <Font cssVariable="--font-archivo" preload />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <ClientRouter />
+
+    <script type="application/ld+json" set:html={JSON.stringify(siteStructuredData)} />
+    {structuredData && (
+      <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+    )}
+  </head>
+  <body class="flex min-h-screen flex-col overflow-x-hidden">
+    <Navbar />
+    {/* Full-bleed: pages set their own horizontal padding */}
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

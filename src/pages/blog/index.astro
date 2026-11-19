@@ -1,0 +1,86 @@
+---
+import type { CollectionPage, ListItem, WithContext } from "schema-dts";
+
+import PageHeader from "#/components/PageHeader.astro";
+import BaseLayout from "#/layouts/BaseLayout.astro";
+import { SITE_TITLE, SITE_URL, SITE_WEBSITE_ID } from "#/lib/consts.ts";
+import { formatPostDate, getPostsNewestFirst } from "#/lib/posts.ts";
+
+const fullTitle = `Blog – ${SITE_TITLE}`;
+const description = `Notes from ${SITE_TITLE} on designing and building for the web.`;
+
+const posts = await getPostsNewestFirst();
+
+const structuredData: WithContext<CollectionPage> = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: fullTitle,
+  description,
+  url: `${SITE_URL}/blog/`,
+  isPartOf: {
+    "@id": SITE_WEBSITE_ID,
+  },
+  mainEntity: {
+    "@type": "ItemList",
+    itemListElement: posts.map<ListItem>((post, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": "BlogPosting",
+        headline: post.data.title,
+        description: post.data.description,
+        url: `${SITE_URL}/blog/${post.id}/`,
+        datePublished: post.data.pubDate.toISOString(),
+        author: {
+          "@type": "Person",
+          name: post.data.author.name,
+          ...(post.data.author.url ? { url: post.data.author.url } : {}),
+        },
+      },
+    })),
+  },
+};
+---
+
+<BaseLayout
+  title={fullTitle}
+  description={description}
+  image="/og/blog.png"
+  structuredData={structuredData}
+>
+  <PageHeader label="Blog" title="Notes on building for the web.">
+    What we've learned from designing and shipping websites and products, written for the people who
+    commission them.
+  </PageHeader>
+
+  <section class="px-6 pb-28 sm:px-10 md:pb-40">
+    <ul class="border-t border-guide-strong">
+      {posts.map((post) => (
+        <li>
+          <a
+            href={`/blog/${post.id}/`}
+            class="group grid gap-3 border-b border-guide py-8 md:grid-cols-[12rem_1fr_auto] md:items-baseline md:gap-10 md:py-10"
+          >
+            <time datetime={post.data.pubDate.toISOString()} class="text-sm type-narrow text-dim">
+              {formatPostDate(post.data.pubDate)}
+            </time>
+            <span class="flex flex-col gap-3">
+              <span class="max-w-[28ch] text-[clamp(1.5rem,2.4vw,2rem)] leading-tight font-normal type-wide transition-colors group-hover:text-gold">
+                {post.data.title}
+              </span>
+              <span class="max-w-[60ch] leading-relaxed text-chalk/65">
+                {post.data.description}
+              </span>
+            </span>
+            <span
+              aria-hidden="true"
+              class="text-dim transition duration-300 group-hover:translate-x-1 group-hover:text-gold max-md:hidden"
+            >
+              →
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+</BaseLayout>

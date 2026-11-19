@@ -1,29 +1,34 @@
-@import "tailwindcss";
+@import "tailwindcss" source("./");
 
-@theme {
-  --breakpoint-xs: 380px;
-  --color-primary: #f5dc78;
-  --color-primary-foreground: oklch(10% 0 0);
-  --color-background: oklch(20% 0 0);
-  --color-foreground: oklch(90% 0 0);
-  --color-foreground-muted: oklch(76% 0 0);
-  --color-card: oklch(24% 0 0);
-  --font-primary: var(--font-primary);
+@plugin "@tailwindcss/typography";
 
-  --animate-dash: dash 24s linear infinite;
+:root {
+  color-scheme: dark;
+  --header-height: 5.5rem;
+
+  /* Core palette */
+  --ink: #000000;
+  --chalk: #e8e6e0;
+  --dim: #7c7a74;
+  --gold: #ebd27a;
+  --guide: rgb(232 230 224 / 0.13);
+  --guide-strong: rgb(232 230 224 / 0.3);
+  /* Raised panels over the page, like the mobile menu */
+  --surface: oklch(0.14 0 0);
+}
+
+@theme inline {
+  --breakpoint-xs: 24rem;
+  --font-sans: var(--font-archivo);
+  --color-ink: var(--ink);
+  --color-chalk: var(--chalk);
+  --color-dim: var(--dim);
+  --color-gold: var(--gold);
+  --color-guide: var(--guide);
+  --color-guide-strong: var(--guide-strong);
+  --color-surface: var(--surface);
+
   --animate-dashgold: dashgold 42s linear infinite;
-  --animate-hero-load: hero-load 1.4s ease-out;
-  --animate-hero-buttons: hero-buttons 1.4s ease-out;
-  --animate-fade: fade 1s ease-in-out;
-
-  @keyframes dash {
-    from {
-      stroke-dashoffset: 0;
-    }
-    to {
-      stroke-dashoffset: 16; /* double the stroke-dasharray */
-    }
-  }
 
   @keyframes dashgold {
     from {
@@ -33,52 +38,113 @@
       stroke-dashoffset: 80; /* double the stroke-dasharray */
     }
   }
+}
 
-  @keyframes hero-load {
-    0% {
-      opacity: 0;
-      transform: translateY(14px);
-    }
-    14% {
-      opacity: 0;
-      transform: translateY(14px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
+/* Archivo's width axis carries the hierarchy: expanded for display, condensed for annotation */
+@utility type-wide {
+  font-stretch: 125%;
+  letter-spacing: -0.035em;
+}
 
-  @keyframes hero-buttons {
-    0% {
-      opacity: 0;
-      transform: translateY(14px);
-    }
-    40% {
-      opacity: 0;
-      transform: translateY(14px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
+@utility type-narrow {
+  font-stretch: 72%;
+  letter-spacing: 0.01em;
+}
 
-  @keyframes fade {
-    from {
-      opacity: 0.1;
-    }
-    to {
-      opacity: 1;
-    }
+/* Homepage load: guides settle, the mark is traced, then copy arrives and the gold runs */
+.hero-guides {
+  animation: hero-fade 1.4s ease-out 0.1s both;
+}
+
+.hero-trace {
+  stroke-dasharray: 1;
+  animation: hero-trace 2.6s cubic-bezier(0.65, 0, 0.35, 1) 0.5s both;
+}
+
+.hero-copy {
+  animation: hero-fade 1s ease-out 1.6s both;
+}
+
+.hero-gold {
+  animation: hero-fade 1.2s ease-out 2.6s both;
+}
+
+@keyframes hero-fade {
+  from {
+    opacity: 0;
   }
 }
 
-@layer base {
-  :root {
-    color-scheme: dark;
+@keyframes hero-trace {
+  from {
+    stroke-dashoffset: 1;
   }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@utility prose {
+  --tw-prose-body: color-mix(in oklab, var(--color-chalk) 94%, transparent);
+  --tw-prose-headings: var(--color-chalk);
+  --tw-prose-lead: color-mix(in oklab, var(--color-chalk) 98%, transparent);
+  --tw-prose-links: var(--color-gold);
+  --tw-prose-bold: var(--color-chalk);
+  --tw-prose-counters: color-mix(in oklab, var(--color-chalk) 94%, transparent);
+  --tw-prose-bullets: color-mix(in oklab, var(--color-chalk) 70%, transparent);
+  --tw-prose-hr: color-mix(in oklab, var(--color-chalk) 10%, transparent);
+  --tw-prose-quotes: color-mix(in oklab, var(--color-chalk) 94%, transparent);
+  --tw-prose-quote-borders: color-mix(in oklab, var(--color-chalk) 10%, transparent);
+  --tw-prose-captions: color-mix(in oklab, var(--color-chalk) 94%, transparent);
+  --tw-prose-code: var(--color-chalk);
+  --tw-prose-pre-code: var(--color-chalk);
+  --tw-prose-pre-bg: var(--color-ink);
+  --tw-prose-th-borders: color-mix(in oklab, var(--color-chalk) 8%, transparent);
+  --tw-prose-td-borders: color-mix(in oklab, var(--color-chalk) 10%, transparent);
+}
+
+code::before {
+  content: none;
+}
+code::after {
+  content: none;
+}
+/* Inline code only: highlighted blocks bring their own background */
+:not(pre) > code {
+  background-color: color-mix(in oklab, var(--color-chalk) 8%, transparent);
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.125rem;
+}
+
+@layer base {
   * {
+    @apply border-guide;
     scrollbar-width: thin;
   }
+  html {
+    @apply font-sans;
+    /* Grow everything sized in rem on large desktops: 16px at 1440 wide, 18px at 1920, capped at
+       20px. Expressed relative to the browser default so a user's text-size preference still applies. */
+    font-size: clamp(100%, 0.4167vw + 0.625rem, 125%);
+  }
+  body {
+    @apply bg-ink font-sans text-chalk;
+  }
+  ::selection {
+    background: var(--gold);
+    color: var(--ink);
+  }
+  :focus-visible {
+    outline: 1px solid var(--gold);
+    outline-offset: 4px;
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+/* Keep the page still behind the open mobile menu */
+html:has(dialog[open]) {
+  overflow: hidden;
 }

@@ -1,0 +1,146 @@
+---
+import { MenuIcon, XIcon } from "@lucide/astro";
+
+import Button from "#/components/Button.astro";
+
+const navItems = [
+  { href: "/work/", label: "Work" },
+  { href: "/services/", label: "Services" },
+  { href: "/blog/", label: "Blog" },
+];
+const menuItems = [...navItems, { href: "/contact/", label: "Start a project" }];
+
+const isActive = (href: string) => Astro.url.pathname.startsWith(href);
+---
+
+{/* Transparent at the top so the homepage drawing shows through; solid once scrolling */}
+<header
+  data-navbar
+  class="sticky top-0 z-50 h-(--header-height) border-b border-transparent transition duration-300 ease-in-out data-hidden:-translate-y-full data-scrolled:border-guide data-scrolled:bg-ink/85 data-scrolled:backdrop-blur-xl"
+>
+  <div class="flex h-full items-center justify-between px-6 sm:px-10">
+    <a href="/" class="text-lg font-semibold type-wide">
+      Mugnavo
+    </a>
+
+    <nav class="flex items-center gap-8 text-[0.9375rem]">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class:list={[
+            "transition-colors hover:text-chalk max-md:hidden",
+            isActive(item.href) ? "text-chalk" : "text-dim",
+          ]}
+        >
+          {item.label}
+        </a>
+      ))}
+      <Button href="/contact/" variant="outline" size="xl" class="max-xs:hidden">
+        Start a project
+      </Button>
+      <Button
+        type="button"
+        variant="ghost"
+        size="icon-lg"
+        class="-mr-2 md:hidden"
+        aria-label="Open menu"
+        aria-haspopup="dialog"
+        aria-controls="mobile-menu"
+        data-menu-open
+      >
+        <MenuIcon class="size-4" />
+      </Button>
+    </nav>
+  </div>
+</header>
+
+<dialog
+  id="mobile-menu"
+  aria-labelledby="mobile-menu-title"
+  aria-describedby="mobile-menu-description"
+  class="inset-x-0 top-0 bottom-auto m-0 max-h-[calc(100dvh-6rem)] w-full max-w-none -translate-y-full border-b border-guide bg-surface text-chalk transition-all transition-discrete duration-450 ease-[cubic-bezier(0.22,1,0.36,1)] backdrop:bg-black/10 backdrop:opacity-0 backdrop:backdrop-blur-xs backdrop:transition-all backdrop:transition-discrete backdrop:duration-450 open:translate-y-0 open:backdrop:opacity-100 starting:open:-translate-y-full starting:open:backdrop:opacity-0"
+>
+  {/* Padding lives on this wrapper so a click on the dialog element itself means the backdrop */}
+  <div class="px-6 pb-10">
+    <div class="flex h-(--header-height) items-center justify-between">
+      <p id="mobile-menu-title" class="text-lg font-semibold type-wide">
+        Mugnavo
+      </p>
+      <Button
+        type="button"
+        variant="ghost"
+        size="icon-lg"
+        class="-mr-2"
+        aria-label="Close menu"
+        data-menu-close
+      >
+        <XIcon class="size-4" />
+      </Button>
+    </div>
+    <p id="mobile-menu-description" class="text-dim">
+      Websites and web apps for growing businesses and startups.
+    </p>
+
+    <nav class="mt-8 flex flex-col border-t border-guide">
+      {menuItems.map((item) => (
+        <a
+          href={item.href}
+          class:list={[
+            "border-b border-guide py-4 text-2xl font-light type-wide transition-colors hover:text-gold",
+            isActive(item.href) && "text-gold",
+          ]}
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+  </div>
+</dialog>
+
+<script>
+  const TOP_THRESHOLD = 200;
+  const DIRECTION_THRESHOLD = 8;
+
+  // The client router swaps the page without reloading it, so bind to each new page's elements and
+  // drop the previous page's listeners before the swap
+  document.addEventListener("astro:page-load", () => {
+    const header = document.querySelector<HTMLElement>("[data-navbar]");
+    const menu = document.querySelector<HTMLDialogElement>("#mobile-menu");
+    const controller = new AbortController();
+    const { signal } = controller;
+    document.addEventListener("astro:before-swap", () => controller.abort(), { once: true });
+
+    if (header) {
+      let lastScrollY = 0;
+
+      const handleScroll = () => {
+        const currentScrollY = window.scrollY;
+        const delta = currentScrollY - lastScrollY;
+
+        header.toggleAttribute("data-scrolled", currentScrollY > 2);
+
+        if (currentScrollY <= TOP_THRESHOLD) {
+          header.removeAttribute("data-hidden");
+          lastScrollY = currentScrollY;
+          return;
+        }
+
+        if (Math.abs(delta) < DIRECTION_THRESHOLD) return;
+
+        header.toggleAttribute("data-hidden", delta > 0);
+        lastScrollY = currentScrollY;
+      };
+
+      handleScroll();
+      window.addEventListener("scroll", handleScroll, { passive: true, signal });
+    }
+
+    if (menu) {
+      document.querySelector("[data-menu-open]")?.addEventListener("click", () => menu.showModal());
+      menu.querySelector("[data-menu-close]")?.addEventListener("click", () => menu.close());
+      menu.addEventListener("click", (event) => {
+        if (event.target === menu) menu.close();
+      });
+    }
+  });
+</script>
