@@ -1,0 +1,258 @@
+---
+import { render } from "astro:content";
+import type { BlogPosting, WithContext } from "schema-dts";
+
+import ContactCta from "#/components/ContactCta.astro";
+import SectionLabel from "#/components/SectionLabel.astro";
+import BaseLayout from "#/layouts/BaseLayout.astro";
+import {
+  SITE_LOGO_URL,
+  SITE_ORGANIZATION_ID,
+  SITE_TITLE,
+  SITE_URL,
+  SITE_WEBSITE_ID,
+} from "#/lib/consts.ts";
+import { formatPostDate, getPostsNewestFirst } from "#/lib/posts.ts";
+
+export async function getStaticPaths() {
+  const posts = await getPostsNewestFirst();
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content, headings } = await render(post);
+const { title, description, author, pubDate, updatedDate } = post.data;
+
+const postUrl = `${SITE_URL}/blog/${post.id}/`;
+const fullTitle = `${title} – ${SITE_TITLE}`;
+const imagePath = `/og/blog/${post.id}.png`;
+const readingMinutes = Math.max(1, Math.round((post.body ?? "").split(/\s+/).length / 230));
+const contents = headings.filter((heading) => heading.depth <= 3);
+
+const shareLinks = [
+  {
+    label: "X",
+    href: `https://x.com/intent/post?${new URLSearchParams({ text: title, url: postUrl })}`,
+  },
+  {
+    label: "LinkedIn",
+    href: `https://www.linkedin.com/sharing/share-offsite/?${new URLSearchParams({ url: postUrl })}`,
+  },
+  {
+    label: "Facebook",
+    href: `https://www.facebook.com/sharer/sharer.php?${new URLSearchParams({ u: postUrl })}`,
+  },
+];
+
+const structuredData: WithContext<BlogPosting> = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: title,
+  description,
+  url: postUrl,
+  isPartOf: {
+    "@id": SITE_WEBSITE_ID,
+  },
+  datePublished: pubDate.toISOString(),
+  ...(updatedDate ? { dateModified: updatedDate.toISOString() } : {}),
+  image: `${SITE_URL}${imagePath}`,
+  author: {
+    "@type": "Person",
+    name: author.name,
+    ...(author.url ? { url: author.url } : {}),
+  },
+  publisher: {
+    "@type": "Organization",
+    "@id": SITE_ORGANIZATION_ID,
+    name: SITE_TITLE,
+    url: SITE_URL,
+    logo: {
+      "@type": "ImageObject",
+      url: SITE_LOGO_URL,
+    },
+  },
+};
+
+const rowClass = "flex items-baseline justify-between gap-4 border-b border-guide py-2.5";
+const contentsLinkClass =
+  "block border-b border-guide py-2 text-sm leading-snug text-dim transition-colors hover:text-chalk data-active:text-gold";
+---
+
+<BaseLayout
+  title={fullTitle}
+  description={description}
+  image={imagePath}
+  author={author.name}
+  article={{ publishedTime: pubDate, modifiedTime: updatedDate }}
+  structuredData={structuredData}
+>
+  {/* The post is the drawing; the right column is its title block */}
+  <div class="grid gap-x-20 px-6 pt-10 pb-28 sm:px-10 md:pt-16 md:pb-40 lg:grid-cols-[minmax(0,1fr)_16rem] xl:grid-cols-[minmax(0,1fr)_18rem]">
+    <header class="relative border-t border-guide-strong pt-8 pb-16 md:pb-24 lg:col-span-2">
+      <span aria-hidden="true" class="absolute -top-px left-0 h-3 w-px bg-gold"></span>
+      <a
+        href="/blog/"
+        class="w-fit text-sm type-narrow tracking-[0.14em] text-dim uppercase transition-colors hover:text-chalk"
+      >
+        ← Blog
+      </a>
+      <div class="mt-10">
+        <p class="text-sm type-narrow text-dim">
+          <time datetime={pubDate.toISOString()}>{formatPostDate(pubDate)}</time>
+          {updatedDate && (
+            <>
+              <span aria-hidden="true" class="mx-2">
+                ·
+              </span>
+              Updated{" "}
+              <time datetime={updatedDate.toISOString()}>{formatPostDate(updatedDate)}</time>
+            </>
+          )}
+          <span aria-hidden="true" class="mx-2">
+            ·
+          </span>
+          {readingMinutes} min read
+          <span aria-hidden="true" class="mx-2">
+            ·
+          </span>
+          By{" "}
+          {author.url ? (
+            <a
+              href={author.url}
+              target="_blank"
+              rel="author noreferrer"
+              class="text-chalk underline decoration-guide-strong underline-offset-4 transition-colors hover:decoration-gold"
+            >
+              {author.name}
+            </a>
+          ) : (
+            <span class="text-chalk">{author.name}</span>
+          )}
+        </p>
+        <h1 class="mt-6 max-w-[22ch] text-[clamp(2.25rem,4.6vw,4.5rem)] leading-[1.04] font-light type-wide">
+          {title}
+        </h1>
+        <p class="mt-8 max-w-[56ch] text-lg leading-relaxed text-chalk/70">{description}</p>
+      </div>
+    </header>
+
+    <article class="prose max-w-[70ch] max-lg:order-2 prose-headings:scroll-mt-[calc(var(--header-height)+2rem)] prose-headings:font-normal prose-headings:type-wide prose-h2:mt-16 prose-h2:text-[1.75rem] prose-h2:leading-tight">
+      <Content />
+    </article>
+
+    {/* On phones the sidebar dissolves into the page flow: contents before the post, the rest after */}
+    <aside class="max-lg:contents lg:sticky lg:top-8 lg:max-h-[calc(100svh-4rem)] lg:scrollbar-none lg:self-start lg:overflow-y-auto lg:transition-[top] lg:duration-300 lg:[[data-navbar]:not([data-hidden])~main_&]:top-[calc(var(--header-height)+2rem)] lg:[[data-navbar]:not([data-hidden])~main_&]:max-h-[calc(100svh-var(--header-height)-4rem)]">
+      {contents.length > 0 && (
+        <>
+          <details class="group mb-12 border-y border-guide max-lg:order-1 lg:hidden">
+            <summary class="flex cursor-pointer list-none items-center justify-between py-4 text-sm type-narrow tracking-[0.14em] text-dim uppercase">
+              Contents
+              <span aria-hidden="true" class="transition-transform group-open:rotate-45">
+                +
+              </span>
+            </summary>
+            <ol class="border-t border-guide pb-2">
+              {contents.map((heading) => (
+                <li class:list={[heading.depth === 3 && "pl-4"]}>
+                  <a href={`#${heading.slug}`} class={contentsLinkClass} data-contents-link>
+                    {heading.text}
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </details>
+
+          <nav aria-labelledby="contents-label" class="max-lg:hidden">
+            <SectionLabel>
+              <span id="contents-label">Contents</span>
+            </SectionLabel>
+            <ol class="mt-4 border-t border-guide">
+              {contents.map((heading) => (
+                <li class:list={[heading.depth === 3 && "pl-4"]}>
+                  <a href={`#${heading.slug}`} class={contentsLinkClass} data-contents-link>
+                    {heading.text}
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </nav>
+        </>
+      )}
+
+      <section class="max-lg:order-last max-lg:mt-20 lg:mt-10">
+        <SectionLabel>Share</SectionLabel>
+        <ul class="mt-4 border-t border-guide text-[0.9375rem]">
+          {shareLinks.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                target="_blank"
+                rel="noreferrer"
+                class:list={[rowClass, "group transition-colors hover:text-gold"]}
+              >
+                {link.label}
+                <span aria-hidden="true" class="text-dim transition-colors group-hover:text-gold">
+                  ↗
+                </span>
+              </a>
+            </li>
+          ))}
+          <li>
+            <button
+              type="button"
+              data-copy-link={postUrl}
+              class:list={[rowClass, "group w-full text-left transition-colors hover:text-gold"]}
+            >
+              <span data-copy-label>Copy link</span>
+              <span aria-hidden="true" class="text-dim transition-colors group-hover:text-gold">
+                ⧉
+              </span>
+            </button>
+          </li>
+        </ul>
+      </section>
+    </aside>
+  </div>
+
+  <ContactCta />
+</BaseLayout>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const links = document.querySelectorAll<HTMLAnchorElement>("[data-contents-link]");
+    const headings = [...document.querySelectorAll<HTMLElement>("article :is(h2, h3)[id]")];
+    const copyButton = document.querySelector<HTMLButtonElement>("[data-copy-link]");
+    const controller = new AbortController();
+    const { signal } = controller;
+    document.addEventListener("astro:before-swap", () => controller.abort(), { once: true });
+
+    if (headings.length > 0) {
+      // The current section is the last heading that has scrolled past the top third of the screen
+      const highlightCurrent = () => {
+        const line = window.innerHeight / 3;
+        const current = headings.findLast((heading) => heading.getBoundingClientRect().top < line);
+        for (const link of links) {
+          link.toggleAttribute("data-active", link.hash === `#${current?.id}`);
+        }
+      };
+      highlightCurrent();
+      window.addEventListener("scroll", highlightCurrent, { passive: true, signal });
+    }
+
+    copyButton?.addEventListener(
+      "click",
+      async () => {
+        const label = copyButton.querySelector("[data-copy-label]");
+        if (!label) return;
+        try {
+          await navigator.clipboard.writeText(copyButton.dataset.copyLink ?? location.href);
+          label.textContent = "Link copied";
+        } catch {
+          label.textContent = "Couldn't copy";
+        }
+        setTimeout(() => (label.textContent = "Copy link"), 2000);
+      },
+      { signal },
+    );
+  });
+</script>

@@ -1,0 +1,109 @@
+---
+import {
+  MARK_BASE as BASE,
+  MARK_D,
+  MARK_EDGES as EDGES,
+  MARK_FILLETS as FILLETS,
+  MARK_LEFT as LEFT,
+  MARK_RIGHT as RIGHT,
+  MARK_SHOULDER as SHOULDER,
+  MARK_TOP as TOP,
+  MARK_TRANSFORM,
+} from "#/lib/mark.ts";
+
+const guide = {
+  stroke: "var(--guide)",
+  "stroke-width": 1,
+  "vector-effect": "non-scaling-stroke",
+  fill: "none",
+};
+const dimension = { ...guide, stroke: "var(--guide-strong)" };
+const label = { class: "type-narrow max-sm:hidden", fill: "var(--dim)", "font-size": 1 };
+---
+
+<svg
+  aria-hidden="true"
+  class="absolute inset-x-6 inset-y-4 h-[calc(100%-2rem)] w-[calc(100%-3rem)] overflow-visible sm:inset-x-10 sm:w-[calc(100%-5rem)]"
+  viewBox="-6 -7 51 46"
+  preserveAspectRatio="xMidYMid meet"
+>
+  <defs>
+    <filter id="hero-glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="0.4" result="blur"></feGaussianBlur>
+      <feMerge>
+        <feMergeNode in="blur"></feMergeNode>
+        <feMergeNode in="SourceGraphic"></feMergeNode>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <g class="hero-guides">
+    {[TOP, SHOULDER, BASE].map((y) => (
+      <line x1={-400} x2={440} y1={y} y2={y} {...guide} />
+    ))}
+    {[LEFT, RIGHT].map((x) => (
+      <line x1={x} x2={x} y1={-200} y2={240} {...guide} />
+    ))}
+    {EDGES.map(([x, y, dx, dy]) => (
+      <line x1={x - dx * 3} y1={y - dy * 3} x2={x + dx * 4} y2={y + dy * 4} {...guide} />
+    ))}
+    {FILLETS.map(([cx, cy, r]) => (
+      <circle cx={cx} cy={cy} r={r} {...guide} />
+    ))}
+
+    {/* Overall dimensions */}
+    <g class="max-sm:hidden">
+      <line x1={LEFT} x2={RIGHT} y1={-4} y2={-4} {...dimension}></line>
+      <line x1={LEFT} x2={LEFT} y1={-4.7} y2={-3.3} {...dimension}></line>
+      <line x1={RIGHT} x2={RIGHT} y1={-4.7} y2={-3.3} {...dimension}></line>
+      <line x1={40} x2={40} y1={TOP} y2={BASE} {...dimension}></line>
+      <line x1={39.3} x2={40.7} y1={TOP} y2={TOP} {...dimension}></line>
+      <line x1={39.3} x2={40.7} y1={BASE} y2={BASE} {...dimension}></line>
+
+      {/* Radius callouts */}
+      <polyline points="4.136,31.692 1.5,35.6 -3.2,35.6" {...dimension}></polyline>
+      <polyline points="13.817,0.893 16.4,-1.7 21.2,-1.7" {...dimension}></polyline>
+      <polyline points="35.964,32.058 38,35.6 42.8,35.6" {...dimension}></polyline>
+    </g>
+    <text x={(LEFT + RIGHT) / 2} y={-4.6} text-anchor="middle" {...label}>
+      36.49
+    </text>
+    <text x={41.6} y={16.3} text-anchor="middle" transform="rotate(90 41.6 16.3)" {...label}>
+      32.59
+    </text>
+    <text x={-3.2} y={35.2} {...label}>
+      R 2.33
+    </text>
+    <text x={16.6} y={-2.1} {...label}>
+      R 2.33
+    </text>
+    <text x={38.4} y={35.2} {...label}>
+      R 1.08
+    </text>
+  </g>
+
+  <path
+    class="hero-trace"
+    d={MARK_D}
+    transform={MARK_TRANSFORM}
+    pathLength="1"
+    fill="none"
+    stroke="var(--chalk)"
+    stroke-opacity="0.85"
+    stroke-width="0.1"
+  ></path>
+
+  {/* The gold run from the original logo animation, picked up once the trace finishes */}
+  <g class="hero-gold" filter="url(#hero-glow)">
+    <path
+      class="animate-dashgold"
+      d={MARK_D}
+      transform={MARK_TRANSFORM}
+      fill="none"
+      stroke="var(--gold)"
+      stroke-width="0.16"
+      stroke-dasharray="1.2,38.8"
+      stroke-linecap="round"
+    ></path>
+  </g>
+</svg>

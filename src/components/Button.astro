@@ -1,0 +1,41 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+// Each variant sets its own border color: there is no class merging, so the base can't default one
+const variants = {
+  default: "border-transparent bg-gold text-ink hover:bg-chalk",
+  outline: "border-guide-strong hover:border-gold hover:text-gold",
+  secondary: "border-transparent bg-chalk text-ink hover:bg-chalk/90",
+  ghost: "border-transparent hover:bg-chalk/10",
+};
+
+const sizes = {
+  default: "h-8 gap-1.5 px-2.5 text-xs font-medium",
+  // Marketing CTAs, sized for page actions rather than dense UI controls
+  xl: "h-10 gap-2 px-4 text-[0.9375rem]",
+  "2xl": "h-12 gap-2 px-7 text-[0.9375rem] font-medium",
+  "icon-lg": "size-9",
+};
+
+// Renders a link when given `href`, otherwise a button
+type Props = HTMLAttributes<"a"> &
+  Pick<HTMLAttributes<"button">, "type" | "disabled"> & {
+    variant?: keyof typeof variants;
+    size?: keyof typeof sizes;
+  };
+
+const { variant = "default", size = "default", class: className, ...rest } = Astro.props;
+const Tag = rest.href ? "a" : "button";
+---
+
+<Tag
+  class:list={[
+    "inline-flex shrink-0 items-center justify-center border bg-clip-padding whitespace-nowrap transition-all outline-none select-none focus-visible:border-gold focus-visible:ring-1 focus-visible:ring-gold/50 active:translate-y-px [&_svg]:pointer-events-none [&_svg]:shrink-0",
+    variants[variant],
+    sizes[size],
+    className,
+  ]}
+  {...rest}
+>
+  <slot />
+</Tag>

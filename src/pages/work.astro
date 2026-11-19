@@ -1,0 +1,134 @@
+---
+import type { WebPage, WithContext } from "schema-dts";
+
+import ContactCta from "#/components/ContactCta.astro";
+import PageHeader from "#/components/PageHeader.astro";
+import BaseLayout from "#/layouts/BaseLayout.astro";
+import { SITE_TITLE, SITE_URL, SITE_WEBSITE_ID } from "#/lib/consts.ts";
+
+const fullTitle = `Work – ${SITE_TITLE}`;
+const description = `Products designed and built end to end by ${SITE_TITLE}.`;
+const structuredData: WithContext<WebPage> = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: fullTitle,
+  description,
+  url: `${SITE_URL}/work/`,
+  isPartOf: {
+    "@id": SITE_WEBSITE_ID,
+  },
+};
+
+const PROJECTS = [
+  {
+    name: "Krafta",
+    url: "https://krafta.io",
+    imageSrc: "/images/work/krafta.webp",
+    imageAlt: "A feedback request in Krafta moving from open, to planned, to shipped",
+    summary:
+      "Public feedback boards, roadmaps, and changelogs in one place, so product teams can show users what happened to their ideas.",
+    details: [
+      { term: "Type", value: "SaaS web app" },
+      { term: "Scope", value: "Product design, front end, back end" },
+      { term: "Stack", value: "TypeScript, React, TanStack Start, PostgreSQL" },
+      { term: "Year", value: "2026" },
+    ],
+  },
+];
+
+const sheetNumber = (index: number) => String(index + 1).padStart(2, "0");
+---
+
+<BaseLayout
+  title={fullTitle}
+  description={description}
+  image="/og/work.png"
+  structuredData={structuredData}
+>
+  <PageHeader label="Work" title="Products we've designed and built.">
+    A small, selective body of work. Every project here was designed and built by us, end to end.
+  </PageHeader>
+
+  <section class="flex flex-col gap-24 px-6 pb-28 sm:px-10 md:gap-32 md:pb-40">
+    {PROJECTS.map((project, index) => (
+      <article class="border-t border-guide-strong pt-6">
+        <p class="text-sm type-narrow tracking-[0.14em] text-dim">{sheetNumber(index)}</p>
+        <a
+          href={project.url}
+          target="_blank"
+          rel="noreferrer"
+          class="group mt-6 block"
+          aria-label={`Visit ${project.name}`}
+        >
+          <span class="block overflow-hidden border border-guide-strong transition-colors duration-500 group-hover:border-gold">
+            <img
+              src={project.imageSrc}
+              alt={project.imageAlt}
+              width="2400"
+              height="600"
+              class="block w-full opacity-90 transition duration-700 group-hover:scale-[1.015] group-hover:opacity-100"
+            />
+          </span>
+        </a>
+        <div class="mt-10 grid gap-10 lg:grid-cols-[1fr_1fr] lg:gap-20">
+          <div>
+            <h2 class="text-[clamp(3rem,7vw,6.5rem)] leading-[0.9] font-extralight type-wide">
+              {project.name}
+            </h2>
+            <p class="mt-6 max-w-[46ch] leading-relaxed text-chalk/70">{project.summary}</p>
+          </div>
+          <dl class="grid content-end gap-x-10 border-t border-guide sm:grid-cols-2">
+            {project.details.map((detail) => (
+              <div class="border-b border-guide py-4">
+                <dt class="text-sm type-narrow text-dim">{detail.term}</dt>
+                <dd class="mt-1">{detail.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+        {/* Dimension line carrying the outbound link, as on the homepage */}
+        <a
+          href={project.url}
+          target="_blank"
+          rel="noreferrer"
+          class="group mt-10 flex items-center gap-4 text-dim"
+        >
+          <span aria-hidden="true" class="h-3 w-px bg-guide-strong" />
+          <span aria-hidden="true" class="h-px flex-1 bg-guide-strong" />
+          <span class="text-base type-narrow transition-colors group-hover:text-gold">
+            Visit {new URL(project.url).host}
+          </span>
+          <span aria-hidden="true" class="h-px flex-1 bg-guide-strong" />
+          <span aria-hidden="true" class="h-3 w-px bg-guide-strong" />
+        </a>
+      </article>
+    ))}
+
+    <article class="border-t border-guide-strong pt-6">
+      <p class="text-sm type-narrow tracking-[0.14em] text-dim">{sheetNumber(PROJECTS.length)}</p>
+      {/* A blank sheet crossed through: the drafting convention for "to be drawn" */}
+      <div class="relative mt-6 grid aspect-[2/1] place-items-center border border-dashed border-guide-strong sm:aspect-[4/1]">
+        <svg
+          aria-hidden="true"
+          class="absolute inset-0 size-full text-guide"
+          preserveAspectRatio="none"
+          viewBox="0 0 100 100"
+        >
+          <path
+            d="M0 0 L100 100 M100 0 L0 100"
+            stroke="currentColor"
+            vector-effect="non-scaling-stroke"
+          ></path>
+        </svg>
+        <div class="relative bg-ink px-6 py-3 text-center">
+          <p class="text-xl font-light type-wide sm:text-2xl">On the drafting table</p>
+          <p class="mt-2 text-sm text-dim">
+            Another product is in the works. It'll be here when it's ready.
+          </p>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <ContactCta />
+</BaseLayout>

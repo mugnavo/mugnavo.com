@@ -1,0 +1,23 @@
+---
+import Button from "#/components/Button.astro";
+import { SITE_CONTACT_EMAIL } from "#/lib/consts.ts";
+---
+
+<section class="border-t border-guide px-6 pt-24 sm:px-10 md:pt-36">
+  <div class="grid gap-12 pb-24 md:pb-36 lg:grid-cols-[1fr_auto] lg:items-end">
+    <p class="max-w-[14ch] text-[clamp(2.5rem,6.4vw,6.25rem)] leading-none font-light type-wide">
+      Tell us what you're building.
+    </p>
+    <div class="flex flex-col gap-5">
+      <Button href="/contact/" size="2xl" class="w-fit">
+        Start a project
+      </Button>
+      <a
+        href={`mailto:${SITE_CONTACT_EMAIL}`}
+        class="text-dim underline decoration-guide-strong underline-offset-6 transition-colors hover:text-chalk"
+      >
+        or email {SITE_CONTACT_EMAIL}
+      </a>
+    </div>
+  </div>
+</section>

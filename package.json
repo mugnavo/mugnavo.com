@@ -1,44 +1,56 @@
 {
   "name": "mugnavo.com",
-  "type": "module",
   "private": true,
+  "homepage": "https://github.com/mugnavo/mugnavo.com#readme",
+  "license": "MIT",
+  "author": {
+    "name": "Nathaniel John Tampus",
+    "email": "nat@mugnavo.com",
+    "url": "https://nize.ph"
+  },
+  "type": "module",
+  "imports": {
+    "#/*": "./src/*"
+  },
   "scripts": {
     "dev": "astro dev",
-    "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "format": "prettier -w .",
+    "check": "pnpm format && pnpm typecheck",
+    "typecheck": "astro check",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check",
     "prepare": "husky",
     "deps": "pnpm dlx taze@latest -Ilw",
     "deps:major": "pnpm dlx taze@latest major -Ilw"
   },
-  "lint-staged": {
-    "*": "prettier --ignore-unknown --write"
-  },
   "dependencies": {
-    "@astrojs/check": "^0.9.8",
-    "@astrojs/sitemap": "^3.7.1",
-    "@lucide/astro": "^0.577.0",
-    "@tailwindcss/vite": "^4.2.2",
-    "astro": "^6.0.7",
-    "sharp": "^0.34.5",
-    "tailwindcss": "^4.2.2",
-    "typescript": "^5.9.3"
+    "@astrojs/sitemap": "3.7.5",
+    "@fontsource-variable/archivo": "5.3.0",
+    "@lucide/astro": "1.75.0",
+    "@tailwindcss/typography": "0.5.20",
+    "@tailwindcss/vite": "4.3.5",
+    "@takumi-rs/core": "2.20.0",
+    "astro": "7.4.12",
+    "simple-icons": "16.38.0",
+    "tailwindcss": "4.3.5"
   },
   "devDependencies": {
-    "husky": "^9.1.7",
-    "lint-staged": "^16.4.0",
-    "prettier": "^3.8.1",
-    "prettier-plugin-astro": "^0.14.1",
-    "prettier-plugin-organize-imports": "^4.3.0",
-    "prettier-plugin-tailwindcss": "^0.7.2",
-    "wrangler": "^4.75.0"
+    "@astrojs/check": "0.9.12",
+    "@astrojs/compiler-rs": "0.5.3",
+    "@types/node": "26.6.6",
+    "husky": "9.1.7",
+    "lint-staged": "17.6.1",
+    "oxfmt": "0.79.0",
+    "schema-dts": "2.1.0",
+    "typescript": "6.0.3"
   },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "esbuild",
-      "sharp"
-    ]
-  }
+  "lint-staged": {
+    "*": "oxfmt --no-error-on-unmatched-pattern"
+  },
+  "engines": {
+    "node": ">=26"
+  },
+  "packageManager": "pnpm@12.21.0"
 }

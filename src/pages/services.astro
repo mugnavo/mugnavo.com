@@ -1,0 +1,97 @@
+---
+import type { CollectionPage, ItemList, ListItem, Service, WithContext } from "schema-dts";
+
+import ContactCta from "#/components/ContactCta.astro";
+import PageHeader from "#/components/PageHeader.astro";
+import ProcessSection from "#/components/ProcessSection.astro";
+import BaseLayout from "#/layouts/BaseLayout.astro";
+import {
+  SERVICES,
+  SITE_DESCRIPTION,
+  SITE_ORGANIZATION_ID,
+  SITE_TITLE,
+  SITE_URL,
+  SITE_WEBSITE_ID,
+} from "#/lib/consts.ts";
+
+const fullTitle = `Services – ${SITE_TITLE}`;
+const description = `Websites, mobile apps, commerce, and SaaS products, designed and built by ${SITE_TITLE}.`;
+const servicesList: ItemList = {
+  "@type": "ItemList",
+  itemListElement: SERVICES.map<ListItem>((service, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    item: {
+      "@type": "Service",
+      name: service.title,
+      description: service.description,
+      image: new URL(service.imageSrc, SITE_URL).href,
+      provider: {
+        "@id": SITE_ORGANIZATION_ID,
+      },
+    } satisfies Service,
+  })),
+};
+const structuredData: WithContext<CollectionPage> = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: fullTitle,
+  description,
+  url: `${SITE_URL}/services/`,
+  isPartOf: {
+    "@id": SITE_WEBSITE_ID,
+  },
+  about: SITE_DESCRIPTION,
+  mainEntity: servicesList,
+};
+---
+
+<BaseLayout
+  title={fullTitle}
+  description={description}
+  image="/og/services.png"
+  structuredData={structuredData}
+>
+  <PageHeader label="Services" title="What we design and build.">
+    From a focused marketing site to a full product. Every engagement covers design and development,
+    so nothing gets lost in a handoff.
+  </PageHeader>
+
+  <section class="px-6 pb-28 sm:px-10 md:pb-40">
+    <ol class="border-b border-guide">
+      {SERVICES.map((service, index) => (
+        <li class="grid gap-10 border-t border-guide py-12 md:py-16 lg:grid-cols-2 lg:gap-20">
+          <div class="flex flex-col">
+            <span class="text-sm type-narrow tracking-[0.14em] text-dim">
+              {String(index + 1).padStart(2, "0")}
+            </span>
+            <h2 class="mt-6 text-[clamp(2rem,3.6vw,3.25rem)] leading-[1.05] font-light type-wide">
+              {service.title}
+            </h2>
+            <p class="mt-5 max-w-[44ch] leading-relaxed text-chalk/70">{service.description}</p>
+            <ul class="mt-10 border-t border-guide lg:mt-auto">
+              {service.includes.map((item) => (
+                <li class="flex items-center gap-4 border-b border-guide py-3 text-[0.9375rem]">
+                  <span aria-hidden="true" class="h-px w-3 bg-gold" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+          {/* The mockups are drawn to bleed off the bottom-right edge; their top is transparent */}
+          <div class="relative aspect-5/4 overflow-hidden border border-guide">
+            <img
+              src={service.imageSrc}
+              alt=""
+              loading="lazy"
+              class="absolute right-0 bottom-0 w-[80%] opacity-90"
+            />
+          </div>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <ProcessSection />
+  <ContactCta />
+</BaseLayout>

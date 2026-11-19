@@ -1,0 +1,9 @@
+---
+import { MARK_D, MARK_TRANSFORM, MARK_VIEWBOX } from "#/lib/mark.ts";
+
+const { class: className } = Astro.props;
+---
+
+<svg aria-hidden="true" class={className} viewBox={MARK_VIEWBOX} fill="currentColor">
+  <path d={MARK_D} transform={MARK_TRANSFORM}></path>
+</svg>
